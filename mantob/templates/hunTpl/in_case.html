@@ -1,0 +1,19 @@
+  <div class="title_case"><a href="{$ci->get_cache('module-1-case', 'category', 2, 'url')}"></a></div>
+  <div class="caseindex">
+	   <ul>
+	   {list action=module flag=1 module=case order=updatetime num=7}
+		<li class="ci{$key+1}">
+			<a href="{$t.url}">
+				<img src="{dr_thumb($t.thumb)}"
+				alt="{$t.title}" title="{$t.title}" />
+				<span class="png">
+					<h2>
+						{$t.title}
+					</h2>
+				</span>
+			</a>
+		</li>	
+		 {/list}		
+	</ul>    
+     
+  </div>

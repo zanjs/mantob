@@ -1,0 +1,15 @@
+<div class="top">
+	<div class="toper">
+		<div class="hybiaoti">
+			{om_block(1)}
+		</div>
+		<div class="topmenu">
+			{list action=navigator type=2 pid=0}
+			<a {if $key < 1}class="nobg"{/if} href="{$t.url}" {if $t.target}target="_blank"{/if}>
+				{$t.name}
+			</a>
+			{/list}
+            		
+		</div>
+	</div>
+</div>

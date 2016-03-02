@@ -1,0 +1,13 @@
+<!--模块首页的list标签中调用，以下写法的意思是：开启分页，以每页显示10条-->
+{list action=module page=1 pagesize=10 urlrule=index.php?page=[page]}
+<li>
+    <a href="{dr_mobile_show_url(APP_DIR, $t.id)}">
+        <img src="{dr_thumb($t.thumb,57,72)}" />
+        <dl>
+            <dt>{$t.title}</dt>
+            <dd class="content">{$t.description}</dd>
+            <dd class="source">作者：{$t.author} &nbsp;&nbsp;分类：{CATEGORY.$t[catid].name}</dd>
+        </dl>
+    </a>
+</li>
+{/list}

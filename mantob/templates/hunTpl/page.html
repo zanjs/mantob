@@ -1,0 +1,53 @@
+{template "header.html"}
+<body>
+{template "top_nav.html"}
+<!--head start--> 
+<!--top-->
+{template "top.html"}
+<!--top end-->
+{template "nav.html"}
+<!--head end--> 
+<!--banner start-->
+{template "banner.html"}
+<!--banner end--> 
+<!--mainbody start-->
+<div class="mainbody">
+  	<div class="mianbao">
+    <h2>  {$parent.name}</h2>
+    <span>您所在的位置：<a href="{SITE_URL}"class="gray">首页</a> >> {dr_page_catpos($id, ' >> ')}</span></div>
+    <div class="lfebodyl">
+    <div class="submenu">
+      <ul>
+      {loop $related $t}
+			<li {if $id==$t.id} class="current" {/if}>
+				<a href="{$t.url}" title="{$t.name}" class="biao{$key_t}">
+				{$t.name}
+				<i>
+					{$t.dirname}{$catid}
+				</i>
+			</a>
+			</li>
+		{/loop}
+		</ul>
+    </div>
+	{template "sidebar.html"}    
+ </div>   
+ 
+<div class="lfebodyr">
+	<div class="about">
+		{$content}
+            	<div id="fenye">
+                   
+                    {loop $content_page $i $t}
+                    {if $page==$i}
+                    	<span>{$i}</span>
+                    {else}
+                    	<a href="{dr_content_page_url($urlrule, $i)}" title="{$t.title}">{$i}</a>
+                    {/if}
+                    {/loop}
+             	</div>
+	</div>
+</div>
+</div>
+<!--mainbody end-->
+{template "footer.html"}

@@ -1,0 +1,62 @@
+{template "header.html"}
+<body>
+{template "top_nav.html"}
+<!--head start--> 
+<!--top-->
+{template "top.html"}
+<!--top end-->
+{template "nav.html"}
+<!--head end--> 
+<!--banner start-->
+{template "banner.html"}
+<!--banner end--> 
+<!--mainbody start-->
+<div class="mainbody">
+    {template "mianbao.html"}
+    <div class="lfebodyl">
+    <div class="submenu">
+      <ul>
+    {list action=category pid=$cat.pid }
+    <li {if  $t.id==$catid} class="current" {/if}>
+      <a href="{$t.url}" title="{$t.name}" class="biao{$key}">
+        {$t.name}
+        <i>
+          {$t.dirname}{$catid}
+        </i>
+      </a>
+    </li>
+    {/list} 
+    </ul>
+    </div>  
+  {template "sidebar.html"}   
+  </div>  
+    
+ 
+<div class="lfebodyr">
+          <div class="newsshow">
+      <div class="newsshowtitle">
+        <h1>{$title}</h1>
+        <p>作者：{$author}　发布日期：{dr_date($_updatetime, 'Y-m-d')}　阅读次数：{dr_show_hits($id)}次</p>
+      </div>
+      <div class="newsshowtxt">
+        {$content}
+        <div id="fenye">                   
+                    {loop $content_page $i $t}
+                    {if $page==$i}
+                      <span>{$i}</span>
+                    {else}
+                      <a href="{dr_content_page_url($urlrule, $i)}" title="{$t.title}">{$i}</a>
+                    {/if}
+                    {/loop}
+              </div>
+        <div class="shangxiapian" style="clear:both; margin:10px 0; line-height:24px;">
+           <strong>上一篇：</strong>{if $prev_page}<a href="{$prev_page.url}" rel="prev">{$prev_page.title}</a>{else}没有了{/if}        
+            <br/>
+           <strong>下一篇：</strong>{if $next_page}<a href="{$next_page.url}" rel="prev">{$next_page.title}</a>{else}没有了{/if}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--mainbody end-->
+{template "footer.html"}

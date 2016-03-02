@@ -1,0 +1,36 @@
+{template header.html}
+<div class="subnav">
+	<div class="content-menu ib-a blue line-x">
+		{$menu}
+	</div>
+	<div class="bk10"></div>
+	<div class="table-list col-tab">
+		<form action="" method="post" name="myform" id="myform">
+		<div class="contentList pad-10">
+				<table width="100%" class="table_form">
+				<tr>
+					<th width="200">{lang('html-706')}： </th>
+					<td>
+                        <select name="syn[]" multiple style="width: 150px; height: 150px;">
+                            {loop $group $t}
+                            {if $t.id!=$get.gid}
+                            <option value="{$t.id}" selected>{$t.name}</option>
+                            {/if}
+                            {/loop}
+                        </select>
+                        <br>
+                        <font color="gray">{lang('html-719')}</font>
+                    </td>
+				</tr>
+                <tr>
+                    <th width="200" style="border:none;">&nbsp;</th>
+                    <td>
+                        <input style="width:150px;" class="button" type="submit" name="submit" value="{lang('html-706')}" />
+                    </td>
+                </tr>
+				</table>
+		</div>
+		</form>
+	</div>
+</div>
+{template footer.html}

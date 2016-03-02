@@ -1,0 +1,72 @@
+{template header.html}
+<script type="text/javascript">
+{if IS_POST}
+art.dialog.tips("{lang('000')}", 3, 1);
+{/if}
+</script>
+<form action="" method="post" name="myform" id="myform">
+<div class="subnav">
+	<div class="content-menu ib-a blue line-x">
+		{$menu}
+	</div>
+    <div class="bk10"></div>
+    <fieldset>
+        <legend>余额支付</legend>
+        <input name="data[1][name]" type="hidden" value="余额支付" />
+        <table width="100%" class="table_form">
+            <tr>
+                <th width="200">{lang('html-153')}：</th> 
+                <td><input name="data[1][use]" type="checkbox" {if $data['1']['use']}checked="checked"{/if} value="1" /></td>
+            </tr>
+            <tr class="dr_border_none">
+                <th>描述：</th>
+                <td><input type="text" style="width:90%;" value="{$data.1.text}" name="data[1][text]" class="input-text" /></td>
+            </tr>
+        </table>
+    </fieldset>
+	<div class="bk10"></div>
+    <fieldset>
+        <legend>在线支付</legend>
+        <input name="data[2][name]" type="hidden" value="在线支付" />
+        <table width="100%" class="table_form">
+            <tr>
+                <th width="200">{lang('html-153')}：</th> 
+                <td><input name="data[2][use]" type="checkbox" {if $data['2']['use']}checked="checked"{/if} value="2" /></td>
+            </tr>
+			<tr>
+                <th>描述：</th>
+                <td><input type="text" style="width:90%;" value="{$data.2.text}" name="data[2][text]" class="input-text" /></td>
+            </tr>
+            <tr class="dr_border_none">
+                <th>说明：</th> 
+                <td>通过网银直接付款，必须先<a href="{dr_url('member/setting/pay')}" style="color:blue" class="onloading">配置网银</a>。</td>
+            </tr>
+        </table>
+    </fieldset>
+	<div class="bk10"></div>
+    <fieldset>
+        <legend>货到付款</legend>
+        <input name="data[3][name]" type="hidden" value="货到付款" />
+        <table width="100%" class="table_form">
+            <tr>
+                <th width="200">{lang('html-153')}：</th> 
+                <td><input name="data[3][use]" type="checkbox" {if $data['3']['use']}checked="checked"{/if} value="3" /></td>
+            </tr>
+            <tr class="dr_border_none">
+                <th>描述：</th>
+                <td><input type="text" style="width:90%;" value="{$data.3.text}" name="data[3][text]" class="input-text" /></td>
+            </tr>
+        </table>
+    </fieldset>
+	<div class="bk10"></div>
+    <fieldset style="border:none;">
+        <table width="100%" class="table_form">
+		<tr class="dr_border_none">
+			<th width="200"> </th>
+			<td><input value="{lang('save')}" type="submit" name="submit" class="button" /></td>
+		</tr>
+        </table>
+    </fieldset>
+</div>
+</form>
+{template footer.html}

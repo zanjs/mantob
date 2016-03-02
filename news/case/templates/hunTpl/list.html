@@ -1,0 +1,54 @@
+{template "header.html"}
+<body>
+{template "top_nav.html"}
+<!--head start--> 
+<!--top-->
+{template "top.html"}
+<!--top end-->
+{template "nav.html"}
+<!--head end--> 
+<!--banner start-->
+{template "banner.html"}
+<!--banner end--> 
+<!--mainbody start-->
+<div class="mainbody">
+   {template "mianbao.html"}
+    <div class="lfebodyl">
+    <div class="submenu">
+     <ul>      
+		{list action=category pid=$cat.pid }
+		<li {if  $t.id==$catid} class="current" {/if}>
+			<a href="{$t.url}" title="{$t.name}" class="biao{$key}">
+				{$t.name}
+				<i>
+					{$t.dirname}{$catid}
+				</i>
+			</a>
+		</li>
+		{/list}	 
+	</ul>
+    </div>
+	{template "sidebar.html"}	 
+  </div> 
+<div class="lfebodyr">
+      <div class="case">                               
+	      <ul>
+	      {list action=module catid=$catid order=displayorder,updatetime page=1}
+			<li>
+				<a href="{$t.url}" title="{$t.title}">					
+					<img src="{dr_thumb($t.thumb, 300,213)}" class="attachment-thumbnail wp-post-image" alt="{$t.title}" title="{$t.title}" width="300px" height="213px" />					
+					<span style="bottom: 213px;" class="png">
+						<h2>
+							{$t.title}
+						</h2>
+					</span>
+				</a>
+			</li>
+			{/list}{$error}	         
+	      </ul>
+      </div>
+    {template "pages.html"}
+  </div>
+</div>
+<!--mainbody end-->
+{template "footer.html"}

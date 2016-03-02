@@ -1,0 +1,15 @@
+<!--搜索的list标签中调用，以下写法的意思是：开启分页，以每页显示10条-->
+{if $contentid}
+{list action=module module=$dirname IN_id=$contentid page=1 pagesize=10 urlrule=$urlrule}
+<li>
+    <a href="{dr_mobile_show_url($module, $t.id)}">
+        <img src="{dr_thumb($t.thumb,57,72)}" />
+        <dl>
+            <dt>{dr_keyword_highlight($t.title, $keyword)}</dt>
+            <dd class="content">{dr_keyword_highlight($t.description, $keyword)}</dd>
+            <dd class="source">作者：{$t.author} &nbsp;&nbsp;{$t.updatetime}</dd>
+        </dl>
+    </a>
+</li>
+{/list}
+{/if}

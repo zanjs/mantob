@@ -1,0 +1,196 @@
+{template "header.html"}
+<body>
+{template "top_nav.html"}
+<!--head start--> 
+<!--top-->
+{template "top.html"}
+<!--top end-->
+{template "nav.html"}
+<!--head end--> 
+<!--banner start-->
+{template "banner.html"}
+<!--mainbody start-->
+<div class="mainbody">
+  <div class="mianbao">
+    <h2>  在线预约</h2>
+    <span>您所在的位置：<a href="/"class="gray">首页</a> >> 在线预约</span></div>
+    <div class="lfebodyl">
+    <div class="submenu">
+      <ul>
+		<li class="current">
+			<a href="" title="品牌故事"
+			class="biao0">
+				品牌故事
+				<i>
+					brand-story
+				</i>
+			</a>
+		</li>	
+	  </ul>
+    </div>	
+    {template "sidebar.html"}
+    
+  </div>
+    
+ 
+<div class="lfebodyr">
+  <div class="about">
+      <p>欢迎加入我们，认真填写下面的信息，提交给我们，我们会尽快与您取得联系。</p>
+		<form enctype="multipart/form-data" class="fm-form" method="post" action=""
+		name="fm-form-2" id="fm-form-2" autocomplete="on">
+			<ul>
+				<li id="fm-item-text-544a343300394">
+					<table>
+						<tr>
+							<td style="width:65px">
+								<label>
+									主题：&nbsp;
+									<em>
+										*
+									</em>
+								</label>
+							</td>
+							<td>
+								<input type="text" name="data[title]" id="text-545a343300394" style="width:157px;"
+								placeholder="" />
+							</td>
+						</tr>
+					</table>
+				</li>
+				<li id="fm-item-text-544a343300394">
+					<table>
+						<tr>
+							<td style="width:65px">
+								<label>
+									姓名：&nbsp;
+									<em>
+										*
+									</em>
+								</label>
+							</td>
+							<td>
+								<input type="text" name="data[name]" id="text-544a343300394" style="width:157px;"
+								placeholder="" />
+							</td>
+						</tr>
+					</table>
+				</li>
+				<li id="fm-item-text-544a34330039e">
+					<table>
+						<tr>
+							<td style="width:65px">
+								<label>
+									电话：&nbsp;
+									<em>
+										*
+									</em>
+								</label>
+							</td>
+							<td>
+								<input type="text" name="data[tel]" id="text-544a34330039e" style="width:157px;"
+								placeholder="" />
+							</td>
+						</tr>
+					</table>
+				</li>
+				<li id="fm-item-text-544a3433003a4">
+					<table>
+						<tr>
+							<td style="width:65px">
+								<label>
+									Q Q：&nbsp;
+									<em>
+										*
+									</em>
+								</label>
+							</td>
+							<td>
+								<input type="text" name="data[qq]" id="text-544a3433003a4" style="width:157px;"
+								placeholder="" />
+							</td>
+						</tr>
+					</table>
+				</li>
+				<li id="fm-item-textarea-544a3433003b0">
+					<table>
+						<tr>
+							<td style="width:65px">
+								<label>
+									项目：&nbsp;
+									<em>
+										*
+									</em>
+								</label>
+							</td>
+							<td>
+								<textarea name="data[case]" id="textarea-544a3433003b0" style="width:px;height:px;"
+								placeholder="">
+								</textarea>
+							</td>
+						</tr>
+					</table>
+				</li>
+			</ul>
+			<div>
+				<input type="submit" name="fm_form_submit" id="fm_form_submit" class="submit"
+				value="提交" onclick="return fm_submit_onclick(2)" />
+				<input class='reset' name='' type='reset' />
+			</div>
+			<input type="hidden" name="fm_nonce" id="fm_nonce" value="27ae44ee88"
+			/>
+			<input type="hidden" name="fm_id" id="fm_id" value="2" />
+			<input type="hidden" name="fm_uniq_id" id="fm_uniq_id" value="fm-54fb0709c05f7"
+			/>
+			<input type="hidden" name="fm_parent_post_id" id="fm_parent_post_id" value="9"
+			/>
+		</form>
+
+  </div>
+  </div>
+</div>
+<!--mainbody end-->
+
+{template "footer.html"}
+
+
+<script type="text/javascript">
+//<![CDATA[
+    function fm_text_validation(formID, itemID, valType){
+      var itemValue = fm_base_get_value(formID, itemID);
+      if(fm_trim(itemValue) == "") return true;
+      switch(valType){
+                case "number":
+          return itemValue.match(/^\s*[0-9]*[\.]?[0-9]+\s*$/);
+                case "phone":
+          return itemValue.match(/^.*[0-9]{3}.*[0-9]{3}.*[0-9]{4}.*$/);
+                case "email":
+          return itemValue.match(/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/);
+                case "date":
+          return itemValue.match(/^[0-9]{1,2}.[0-9]{1,2}.[0-9]{2}$/);
+                case "state":
+          return itemValue.match(/^(A[LKSZRAEP]|C[AOT]|D[EC]|F[LM]|G[AU]|HI|I[ADLN]|K[SY]|LA|M[ADEHINOPST]|N[CDEHJMVY]|O[HKR]|P[ARW]|RI|S[CD]|T[NX]|UT|V[AIT]|W[AIVY])$/i);
+                case "zip":
+          return itemValue.match(/^\d{5}$/);
+                case "dimensions":
+          return itemValue.match(/^\s*(\d+(\.\d+)?)\s*(x|X)\s*(\d+(\.\d+)?)\s*(x|X)\s*(\d+(\.\d+)?)\s*$/);
+                case "date2":
+          return itemValue.match(/^[0-9]{1,2}.[0-9]{1,2}.[0-9]{2}$/);
+              }
+      return false;
+    }
+//]]>
+</script><script type="text/javascript">
+//<![CDATA[
+
+fm_current_form = 2;  
+fm_register_form_item('2', {"ID":"2","index":"0","unique_name":"text-544a343300394","type":"text","extra":{"value":"","size":"157","validation":"none","maxlength":""},"nickname":"","label":"\u59d3\u540d\uff1a","required":"1","db_type":"DATA","description":"\u9879\u76ee\u63cf\u8ff0","set":"0","required_callback":"fm_base_required_validator","required_msg":"'\u59d3\u540d\uff1a'  \u5fc5\u586b\u3002","validation_callback":"fm_text_validation","validation_msg":"","validation_type":"none","getter_script":"fm_base_get_value"});
+fm_register_form_item('2', {"ID":"2","index":"1","unique_name":"text-544a34330039e","type":"text","extra":{"value":"","size":"157","validation":"phone","maxlength":""},"nickname":"","label":"\u7535\u8bdd\uff1a","required":"1","db_type":"DATA","description":"\u9879\u76ee\u63cf\u8ff0","set":"0","required_callback":"fm_base_required_validator","required_msg":"'\u7535\u8bdd\uff1a'  \u5fc5\u586b\u3002","validation_callback":"fm_text_validation","validation_msg":"'\u7535\u8bdd\uff1a'  \u5fc5\u987b\u662f\u6709\u6548\u7684\u7535\u8bdd\u53f7\u7801","validation_type":"phone","getter_script":"fm_base_get_value"});
+fm_register_form_item('2', {"ID":"2","index":"2","unique_name":"text-544a3433003a4","type":"text","extra":{"value":"","size":"157","validation":"number","maxlength":""},"nickname":"","label":"Q Q\uff1a","required":"1","db_type":"DATA","description":"\u9879\u76ee\u63cf\u8ff0","set":"0","required_callback":"fm_base_required_validator","required_msg":"'Q Q\uff1a'  \u5fc5\u586b\u3002","validation_callback":"fm_text_validation","validation_msg":"'Q Q\uff1a' \u5fc5\u987b\u662f\u6709\u6548\u7684\u6570\u5b57","validation_type":"number","getter_script":"fm_base_get_value"});
+fm_register_form_item('2', {"ID":"2","index":"3","unique_name":"textarea-544a3433003b0","type":"textarea","extra":{"value":"","rows":"","cols":""},"nickname":"","label":"\u9879\u76ee\uff1a ","required":"1","db_type":"DATA","description":"\u9879\u76ee\u63cf\u8ff0","set":"0","required_callback":"fm_base_required_validator","required_msg":"'\u9879\u76ee\uff1a '  \u5fc5\u586b\u3002","validation_callback":"","validation_msg":"","validation_type":null,"getter_script":"fm_base_get_value"});
+
+//]]>
+</script><script type="text/javascript">
+/* <![CDATA[ */
+fm_register_form(2);
+/* ]]> */
+</script>

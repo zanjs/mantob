@@ -1,0 +1,20 @@
+  <div class="title_video"><a href="{$ci->get_cache('module-1-video', 'category', 1, 'url')}"></a></div>
+  <div class="videoindex">
+    <ul>
+    {list action=module flag=1 module=video order=updatetime num=5}
+	<li {if $key< 1}class="videoone"{/if}>
+		<a href="{$t.url}" title="{$t.title}"
+		class="orderbox">
+			<img style="display: block;" src="{dr_thumb($t.thumb)}"	alt="{$t.title}">
+			<span class="png">
+				<h2>
+					{$t.title}
+				</h2>
+			</span>
+			<ins>
+			</ins>
+		</a>
+	</li>
+	 {/list}	
+</ul>
+  </div>

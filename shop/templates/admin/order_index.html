@@ -1,0 +1,118 @@
+{template header.html}
+<style>
+.dr_table_item td {
+	border-left: 1px solid #EEEEEE; 
+	border-right: 1px solid #EEEEEE;
+	border-bottom: 1px solid #EEEEEE;
+}
+.table-list td, .table-list th {
+    padding-left: 0px;
+}
+.dr_order_item td {
+	border-left: none;
+	border-right: none;
+	border-bottom: none !important;
+}
+.dr_border_line td {
+	border-bottom:dotted 1px #CCC !important;
+}
+</style>
+<div class="subnav">
+	<div class="content-menu ib-a blue line-x">
+		{$menu}
+	</div>
+	<div class="bk10"></div>
+	<div class="explain-col">
+        <form method="post" action="" name="searchform" id="searchform">
+		<input name="search" id="search" type="hidden" value="1" />
+		{lang('my-33')} ：
+		<input type="text" size=10 class="input-text" value="{$param.keyword}" name="data[keyword]" />&nbsp;
+		{lang('my-36')} ：
+		{dr_field_input('start', 'Date', array('option'=>array('format'=>'Y-m-d','width'=>80)), (int)$param.start)}
+		-&nbsp;
+		{dr_field_input('end', 'Date', array('option'=>array('format'=>'Y-m-d','width'=>80)), (int)$param.end)}
+		&nbsp;
+		{lang('my-34')} ：
+		<input type="text" size=10 class="input-text" value="{$param['name']}" name="data[name]" />&nbsp;
+		{lang('my-37')} ：
+		<select name="data[status]">
+			<option value="0"> --- </option>
+			<option value="1" {if $param.status==1}selected{/if}> 待付款 </option>
+			<option value="2" {if $param.status==2}selected{/if}> 待发货 </option>
+			<option value="3" {if $param.status==3}selected{/if}> 待收货 </option>
+			<option value="4" {if $param.status==4}selected{/if}> 交易完成 </option>
+		</select>&nbsp;&nbsp;
+		<input type="submit" value="{lang('search')}" class="button" name="search" />
+		</form>
+	</div>
+	<div class="bk10"></div>
+	<div class="table-list">
+		<form action="" method="post" name="myform" id="myform">
+		<table width="100%" class="dr_table_item">
+		<thead>
+		<tr>
+			<th width="80" align="center">{lang('my-33')}</th>
+			<th align="left"></th>
+			<th hide="1" width="100" align="center">{lang('my-34')}</th>
+			<th hide="1" width="150" align="center">{lang('my-36')}</th>
+			<th width="150" align="center">{lang('my-35')}</th>
+			<th width="100" align="center">{lang('my-37')}</th>
+			<th width="100" align="center">{lang('my-100')}</th>
+		</tr>
+		{loop $list $t}
+		<tr>
+			<td align="center"><a href="{dr_url(APP_DIR.'/order/show', array('id' => $t.id))}">{$t.id}</a></td>
+			<td>
+				<table border="0" cellspacing="0" cellpadding="0" class="dr_order_item">
+				{php $items=dr_string2array($t.items);$icount=count($items);}
+				{loop $items $i $item}
+				  <tr class="{if $icount>1 && $i<$icount-1}dr_border_line{/if}">
+					<td width="90"><a href="{$item.url}" target="_blank" class="dr_order_item_thumb"><img src="{dr_thumb($item.thumb, 70, 60)}" width="70" /></a></td>
+					<td style="padding-right:5px;"><a href="{$item.url}" target="_blank">{$item.title}</a><div style="padding-top:3px; color:#999">{$item.format}</div></td>
+					<td width="90" style="text-align:center">{$item.num}件</td>
+				  </tr>
+				{/loop}
+				</table>
+			</td>
+			<td hide="1" align="center"><input name="dr_author_{$t.id}" id="dr_author_{$t.id}" type="hidden" value="{$t.username}" /><a href="javascript:;" onclick="dr_dialog_member('author_{$t.id}')">{dr_strcut($t.username, 10)}</a></td>
+			<td hide="1" align="center">{dr_date($t.inputtime, NULL, 'red')}</td>
+			<td width="100" style="text-align:center">
+				<div style="min-height:80px;padding-top:10px;">
+					<span class="dr_price">{number_format($t.price, 2)}</span><br>
+					(含运费:{number_format($t.freight, 2)} ) 
+					{if $t.score}
+					<br>{SITE_SCORE}：{$t.score}
+					{/if}
+					<br>
+					<font color="{$paytype[$t.ptid]['color']}"><b>{$paytype[$t.ptid]['name']}</b></font>
+				</div>
+			</td>
+			<td align="center">
+				<a href="{dr_url(APP_DIR.'/order/show', array('id' => $t.id))}">
+				{if $t.status==0}
+				<font color="#FF0000">交易关闭</font>
+				{else if $t.status==1}
+				<font color="#0000FF">等待付款</font>
+				{else if $t.status==2}
+				<font color="#FF9933">等待发货</font>
+				{else if $t.status==3}
+				<font color="#FF0000">确认收货</font>
+				{else if $t.status==4}
+				<font color="#009900">交易成功</font>
+                <br /><script type="text/javascript" src="{dr_url(APP_DIR.'/order/isreview', array('oid' => $t.id, 'iid' => $item.id, 'fid' => $item.fid))}"></script>
+				{/if}
+			    </a>
+			</td>
+			<td align="center">
+			<a href="{dr_url(APP_DIR.'/order/orderPrint', array('id' => $t.id))}" target="_blank">
+				{lang('my-101')}
+			</a>
+			</td>
+		</tr>
+		{/loop}
+		</table>
+		</form>
+        <div id="pages"><a>{dr_lang('html-346', $param.total)}</a>{$pages}</div>
+	</div>
+</div>
+{template footer.html}

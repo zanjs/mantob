@@ -1,0 +1,60 @@
+<div class="banner"> <a href="javascript:void(0)" class="bn_prev"></a> <a href="javascript:void(0)" class="bn_next"></a>
+  <div class="bannerimg">
+    <ul>
+    		{list action=navigator type=1 pid=0}
+            <li><a href="{$t.url}" target="_blank"><img src="{dr_thumb($t.thumb)}"></a></li>
+            {/list}
+      </ul>
+  </div>
+  <div class="bmenu">
+	<div class="bannermenu" style="display:none;">
+		<ul>
+			<li class="cur">
+				<a href="javascript:void(0);">
+				</a>
+				<div class="bimg">
+					<img src="{HOME_THEME_PATH}images/b.png">
+				</div>
+			</li>
+			<li class="">
+				<a href="javascript:void(0);">
+				</a>
+				<div class="bimg">
+					<img src="{HOME_THEME_PATH}images/b.png">
+				</div>
+			</li>
+			<li class="">
+				<a href="javascript:void(0);">
+				</a>
+				<div class="bimg">
+					<img src="{HOME_THEME_PATH}images/b.png">
+				</div>
+			</li>
+			<li class="">
+				<a href="javascript:void(0);">
+				</a>
+				<div class="bimg">
+					<img src="{HOME_THEME_PATH}images/b.png">
+				</div>
+			</li>
+		</ul>
+	</div>
+	<div class="bsns">
+		<a href="http://wpa.qq.com/msgrd?=3&uin={om_block(2)}&menu=yes" target="_blank"
+		rel="nofollow" class="qq">
+		</a>
+		{list action=navigator type=4 pid=0}
+		{if $t.id=53}
+		<a href="{dr_thumb($t.thumb)}"
+		target="_blank" class="weixin orderbox">
+		</a>
+		{/if}
+		{/list}
+		<a href="{om_block(3)}" target="_blank" rel="nofollow" class="weibo">
+		</a>
+		<a href="" target="_blank" rel="nofollow" class="gengduo">
+		</a>
+	</div>
+</div>
+  
+</div>

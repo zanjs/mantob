@@ -1,0 +1,36 @@
+<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+
+ERROR - 2016-03-02 15:37:31 --> Severity: Compile Error --> require(): Failed opening required 'E:\wwwroot\wubu.com\mantob/core/D_Common.php' (include_path='.;C:\php\pear') E:\wwwroot\wubu.com\mantob\core\M_Controller.php 14
+ERROR - 2016-03-02 15:37:31 --> Severity: Compile Error --> require(): Failed opening required 'E:\wwwroot\wubu.com\mantob/core/D_Common.php' (include_path='.;C:\php\pear') E:\wwwroot\wubu.com\mantob\core\M_Controller.php 14
+ERROR - 2016-03-02 15:40:08 --> Severity: Compile Error --> require(): Failed opening required 'E:\wwwroot\wubu.com\mantob/core/D_Common.php' (include_path='.;C:\php\pear') E:\wwwroot\wubu.com\mantob\core\M_Controller.php 14
+ERROR - 2016-03-02 15:40:08 --> Severity: Compile Error --> require(): Failed opening required 'E:\wwwroot\wubu.com\mantob/core/D_Common.php' (include_path='.;C:\php\pear') E:\wwwroot\wubu.com\mantob\core\M_Controller.php 14
+ERROR - 2016-03-02 15:40:10 --> Severity: Compile Error --> require(): Failed opening required 'E:\wwwroot\wubu.com\mantob/core/D_Common.php' (include_path='.;C:\php\pear') E:\wwwroot\wubu.com\mantob\core\M_Controller.php 14
+ERROR - 2016-03-02 15:40:10 --> Severity: Compile Error --> require(): Failed opening required 'E:\wwwroot\wubu.com\mantob/core/D_Common.php' (include_path='.;C:\php\pear') E:\wwwroot\wubu.com\mantob\core\M_Controller.php 14
+ERROR - 2016-03-02 15:40:22 --> Severity: Compile Error --> require_once(): Failed opening required 'E:\wwwroot\wubu.com\mantob/core/D_Common.php' (include_path='.;C:\php\pear') E:\wwwroot\wubu.com\mantob\core\M_Controller.php 14
+ERROR - 2016-03-02 15:40:22 --> Severity: Compile Error --> require_once(): Failed opening required 'E:\wwwroot\wubu.com\mantob/core/D_Common.php' (include_path='.;C:\php\pear') E:\wwwroot\wubu.com\mantob\core\M_Controller.php 14
+ERROR - 2016-03-02 15:40:45 --> Severity: Compile Error --> require(): Failed opening required 'E:\wwwroot\wubu.com\mantob/core/D_Common.php' (include_path='.;C:\php\pear') E:\wwwroot\wubu.com\mantob\core\M_Controller.php 14
+ERROR - 2016-03-02 15:40:46 --> Severity: Compile Error --> require(): Failed opening required 'E:\wwwroot\wubu.com\mantob/core/D_Common.php' (include_path='.;C:\php\pear') E:\wwwroot\wubu.com\mantob\core\M_Controller.php 14
+ERROR - 2016-03-02 15:41:17 --> Severity: Compile Error --> require(): Failed opening required 'E:\wwwroot\wubu.com\/mantob/core/D_Common.php' (include_path='.;C:\php\pear') E:\wwwroot\wubu.com\mantob\core\M_Controller.php 14
+ERROR - 2016-03-02 15:41:17 --> Severity: Compile Error --> require(): Failed opening required 'E:\wwwroot\wubu.com\/mantob/core/D_Common.php' (include_path='.;C:\php\pear') E:\wwwroot\wubu.com\mantob\core\M_Controller.php 14
+ERROR - 2016-03-02 15:41:25 --> Severity: Compile Error --> require(): Failed opening required 'E:\wwwroot\wubu.com\mantob/core/D_Common.php' (include_path='.;C:\php\pear') E:\wwwroot\wubu.com\mantob\core\M_Controller.php 14
+ERROR - 2016-03-02 15:41:26 --> Severity: Compile Error --> require(): Failed opening required 'E:\wwwroot\wubu.com\mantob/core/D_Common.php' (include_path='.;C:\php\pear') E:\wwwroot\wubu.com\mantob\core\M_Controller.php 14
+ERROR - 2016-03-02 15:42:15 --> Severity: Compile Error --> require(): Failed opening required 'E:\wwwroot\wubu.com\mantob/core/D_Common.php' (include_path='.;C:\php\pear') E:\wwwroot\wubu.com\mantob\core\M_Controller.php 14
+ERROR - 2016-03-02 15:42:15 --> Severity: Compile Error --> require(): Failed opening required 'E:\wwwroot\wubu.com\mantob/core/D_Common.php' (include_path='.;C:\php\pear') E:\wwwroot\wubu.com\mantob\core\M_Controller.php 14
+ERROR - 2016-03-02 15:42:16 --> Severity: Compile Error --> require(): Failed opening required 'E:\wwwroot\wubu.com\mantob/core/D_Common.php' (include_path='.;C:\php\pear') E:\wwwroot\wubu.com\mantob\core\M_Controller.php 14
+ERROR - 2016-03-02 15:42:16 --> Severity: Compile Error --> require(): Failed opening required 'E:\wwwroot\wubu.com\mantob/core/D_Common.php' (include_path='.;C:\php\pear') E:\wwwroot\wubu.com\mantob\core\M_Controller.php 14
+ERROR - 2016-03-02 15:43:38 --> Severity: Compile Error --> require_once(): Failed opening required 'E:\wwwroot\wubu.com\mantob/core/D_Common.php' (include_path='.;C:\php\pear') E:\wwwroot\wubu.com\mantob\core\M_Controller.php 14
+ERROR - 2016-03-02 15:43:38 --> Severity: Compile Error --> require_once(): Failed opening required 'E:\wwwroot\wubu.com\mantob/core/D_Common.php' (include_path='.;C:\php\pear') E:\wwwroot\wubu.com\mantob\core\M_Controller.php 14
+ERROR - 2016-03-02 15:43:50 --> Severity: Error --> Class 'D_Common' not found E:\wwwroot\wubu.com\mantob\core\M_Controller.php 16
+ERROR - 2016-03-02 15:43:50 --> Severity: Error --> Class 'D_Common' not found E:\wwwroot\wubu.com\mantob\core\M_Controller.php 16
+ERROR - 2016-03-02 15:44:07 --> Severity: Compile Error --> require(): Failed opening required 'E:\wwwroot\wubu.com\mantob/core/D_Common.php' (include_path='.;C:\php\pear') E:\wwwroot\wubu.com\mantob\core\M_Controller.php 14
+ERROR - 2016-03-02 15:44:07 --> Severity: Compile Error --> require(): Failed opening required 'E:\wwwroot\wubu.com\mantob/core/D_Common.php' (include_path='.;C:\php\pear') E:\wwwroot\wubu.com\mantob\core\M_Controller.php 14
+ERROR - 2016-03-02 15:44:18 --> Severity: Compile Error --> require(): Failed opening required 'E:\wwwroot\wubu.com\ mantob/core/D_Common.php' (include_path='.;C:\php\pear') E:\wwwroot\wubu.com\mantob\core\M_Controller.php 14
+ERROR - 2016-03-02 15:44:18 --> Severity: Compile Error --> require(): Failed opening required 'E:\wwwroot\wubu.com\ mantob/core/D_Common.php' (include_path='.;C:\php\pear') E:\wwwroot\wubu.com\mantob\core\M_Controller.php 14
+ERROR - 2016-03-02 15:44:50 --> Severity: Compile Error --> require(): Failed opening required 'E:\wwwroot\wubu.com\mantob/core/D_Page.php' (include_path='.;C:\php\pear') E:\wwwroot\wubu.com\mantob\controllers\Page.php 14
+ERROR - 2016-03-02 15:44:50 --> Severity: Compile Error --> require(): Failed opening required 'E:\wwwroot\wubu.com\mantob/core/D_Page.php' (include_path='.;C:\php\pear') E:\wwwroot\wubu.com\mantob\controllers\Page.php 14
+ERROR - 2016-03-02 15:44:50 --> Severity: Compile Error --> require(): Failed opening required 'E:\wwwroot\wubu.com\mantob/core/D_Page.php' (include_path='.;C:\php\pear') E:\wwwroot\wubu.com\mantob\controllers\Page.php 14
+ERROR - 2016-03-02 16:09:45 --> Severity: Compile Error --> require(): Failed opening required 'E:\wwwroot\wubu.com\mantob/core/D_Page.php' (include_path='.;C:\php\pear') E:\wwwroot\wubu.com\mantob\controllers\Page.php 14
+ERROR - 2016-03-02 16:09:45 --> Severity: Compile Error --> require(): Failed opening required 'E:\wwwroot\wubu.com\mantob/core/D_Page.php' (include_path='.;C:\php\pear') E:\wwwroot\wubu.com\mantob\controllers\Page.php 14
+ERROR - 2016-03-02 16:18:41 --> Session: HMAC mismatch. The session cookie data did not match what was expected.
+ERROR - 2016-03-02 16:19:07 --> Severity: Error --> Call to a member function dbprefix() on null E:\wwwroot\wubu.com\mantob\core\D_Common.php 204
+ERROR - 2016-03-02 17:24:02 --> Severity: Error --> Call to a member function dbprefix() on null E:\wwwroot\wubu.com\mantob\core\D_Common.php 204

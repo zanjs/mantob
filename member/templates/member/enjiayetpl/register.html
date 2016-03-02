@@ -1,0 +1,65 @@
+{template header.html}
+<link href="{MEMBER_THEME_PATH}images/reg.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript">
+$(function(){
+	{if $result_error}
+	$("#dr_{$result_error.name}").focus();
+	dr_tips("{$result_error.msg}", 3); 
+	{/if}
+});
+</script>
+<div class="content">
+    <div class="register_wp clearfix">
+        <form action="" method="post">
+            <input name="back" type="hidden" value="{$back_url}" />
+            <div class="register_mod">
+                <h3>会员注册<span>Register</span></h3>
+                <ul>
+                    <li><strong>会员：</strong> 
+                        <input name="data[username]" id="dr_username" class="input_text" type="text" maxlength="64" autofocus value="{$data.username}" />
+                    </li>
+                    <li><strong>密码：</strong>
+                        <input name="data[password]" id="dr_password" class="input_text" type="password" value="{$data.password}" />
+                    </li>
+                    <li><strong>确认：</strong>
+                        <input name="data[password2]" id="dr_password2" class="input_text" type="password" value="{$data.password2}" />
+                    </li>
+                    <li><strong>联系人：</strong>
+                        <input name="data[lname]" id="dr_lname" class="input_text" type="text" maxlength="64" value="{$data.lname}" />
+                    </li>
+                    <li><strong>公司名称：</strong>
+                        <input name="data[cname]" id="dr_cname" class="input_text" type="text" maxlength="64" value="{$data.cname}" />
+                    </li>
+                    <li><strong>联系电话：</strong>
+                        <input name="data[tel]" id="dr_tel" class="input_text" type="text" maxlength="64" value="{$data.tel}" />
+                    </li>
+                    <li><strong>邮箱：</strong>
+                        <input name="data[email]" id="dr_email" class="input_text" type="text" maxlength="64" value="{$data.email}" />
+                    </li>
+                    
+                    {if $code}
+                    <li><strong>验证：</strong>
+                        <input name="code" id="dr_code" class="input_text" style="width:100px;float:left;margin-right:10px;" type="text" maxlength="64" />
+                        <span style="float:left"><img align="absmiddle" style="cursor:pointer;" onclick="this.src='{dr_member_url('api/captcha', array('width' => 90, 'height' => 32))}&'+Math.random();" src="{dr_member_url('api/captcha', array('width' => 90, 'height' => 32))}" /></span>
+                    </li>
+                    {/if}
+                     <li><strong>&nbsp;</strong>
+                        <input type="checkbox" value="1" checked="checked" name="data[tong]" />&nbsp;&nbsp;&nbsp;同意以上内容
+                    </li>
+                    <li class="mbutton">
+                        <button type="submit" value="" id="reg_button">立即注册</button>
+                        <a href="{dr_member_url('login/index')}">直接登录</a>
+                    </li>
+                </ul>
+                <div class="login_other">
+                <span class="txt">使用合作网站帐号登录：</span>
+                {list action=cache name=oauth}
+                <span class="dr_oauth_style dr_oauth_{$t.icon}" title="{$t.name}" onClick="window.location.href='{SITE_URL}member/index.php?c=api&m=oauth&id={$t.id}'"></span>
+                {/loop}
+            	</div>
+            </div>
+        </form>
+        <div class="register_banner"></div>
+    </div>
+</div>
+{template footer.html}

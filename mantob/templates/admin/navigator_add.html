@@ -1,0 +1,161 @@
+{template header.html}
+<script type="text/javascript">
+$(function() {
+	{if $error}art.dialog.tips('<font color=red>{$error}</font>', 3, 0);{/if}
+    dr_nav({$ntype});
+    $("#dr_category").hide();
+    {if $dir && $catid}
+    dr_load_category('{$dir}', {$catid});
+    {if $catid}
+    $("#dr_category").show();
+    $(".nav_c").hide();
+    {else}
+    $(".nav_c").show();
+    {/if}
+    {/if}
+});
+function dr_nav(id) {
+    $(".nav_0").hide();
+    $(".nav_1").hide();
+    $(".nav_2").hide();
+    $(".nav_"+id).show();
+    if (id == 2) {
+        $(".nav_c").show();
+    }
+}
+function dr_load_category(dir, catid) {
+    $.post("{SELF}?s="+dir+"&c=category&m=select&id="+catid, function(data) {
+        $("#dr_category").html(data);
+   });
+}
+function dr_selected2() {
+    if ($("#dr_select").attr('checked')) {
+        $("#dr_category").show();
+    } else {
+        $("#dr_category").hide();
+
+    }
+}
+function dr_select_category(id) {
+    if (id == 0) {
+        $(".nav_c").show();
+    } else {
+        $(".nav_c").hide();
+    }
+}
+</script>
+<div class="subnav">
+	<div class="content-menu ib-a blue line-x">
+		{$menu}
+	</div>
+	<div class="bk10"></div>
+    <div class="table-list col-tab">
+        <ul class="tabBut cu-li">
+            <li class="on">{$name}</li>
+        </ul>
+        <div class="contentList pad-10">
+		<form action="" method="post" id="myform" name="myform">
+		<table width="100%" class="table_form">
+		<tr>
+			<th width="200"><font color="red">*</font>&nbsp;{lang('html-424')}： </th>
+			<td>{$select}</td>
+		</tr>
+		<tr>
+			<th><font color="red">*</font>&nbsp;{lang('179')}： </th>
+			<td>
+            <input {if $data.id}disabled{/if} type="radio" name="ntype" {if $ntype == 0} checked{/if} value="0" onclick="dr_nav(0)" />&nbsp;<label>{lang('198')}</label>
+            &nbsp;&nbsp;&nbsp;
+            <input {if $data.id}disabled{/if} type="radio" name="ntype" {if $ntype == 1} checked{/if} value="1" onclick="dr_nav(1)" />&nbsp;<label>{lang('128')}</label>
+            &nbsp;&nbsp;&nbsp;
+            <input {if $data.id}disabled{/if} type="radio" name="ntype" {if $ntype == 2} checked{/if} value="2" onclick="dr_nav(2)" />&nbsp;<label>{lang('html-010')}</label>
+            </td>
+		</tr>
+
+        <tr class="nav_1">
+            <th><font color="red">*</font>&nbsp;{lang('html-460')}： </th>
+            <td>
+                {$select_page}
+            </td>
+        </tr>
+        <tr class="nav_1">
+            <th>{lang('html-737')}： </th>
+            <td>
+                <input type="radio" name="page[extend]" value="1" {if $data.extend}checked{/if} />&nbsp;<label>{lang('yes')}</label>
+                &nbsp;&nbsp;&nbsp;
+                <input type="radio" name="page[extend]" value="0" {if !$data.extend}checked{/if} />&nbsp;<label>{lang('no')}</label>
+                <div class="onShow">{lang('html-738')}</div>
+            </td>
+        </tr>
+        <tr class="nav_2">
+            <th><font color="red">*</font>&nbsp;{lang('html-739')}： </th>
+            <td>
+                <select {if $data.id}disabled{/if} name="module[dir]" onChange="dr_load_category(this.value)">
+                    <option value="0"> -- </option>
+                    {list action=cache name=module}
+                    <option value="{$t.dirname}" {if $t.dirname==$dir}selected{/if}>{$t.name}</option>
+                    {/list}
+                </select>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                {if !$data.id || $catid}
+                <span><input {if $data.id}disabled{/if} name="module[select]" id="dr_select" {if $catid}checked{/if} value="1" type="checkbox" onclick="dr_selected2()">&nbsp;<label>选择栏目</label></span>
+                &nbsp;&nbsp;&nbsp;
+                {/if}
+                <span id="dr_category"></span>
+            </td>
+        </tr>
+        <tr class="nav_2">
+            <th>{lang('html-737')}： </th>
+            <td>
+                <input type="radio" name="module[extend]" value="1" {if $data.extend}checked{/if} />&nbsp;<label>{lang('yes')}</label>
+                &nbsp;&nbsp;&nbsp;
+                <input type="radio" name="module[extend]" value="0" {if !$data.extend}checked{/if} />&nbsp;<label>{lang('no')}</label>
+                <div class="onShow">{lang('html-738')}</div>
+            </td>
+        </tr>
+        <tr>
+            <th><font color="red">*</font>&nbsp;{lang('html-026')}： </th>
+            <td>
+                {dr_field_input('name', 'Text', $field['name']['setting'], $data['name'])}
+                <div class="onShow">{lang('html-027')}</div>
+            </td>
+        </tr>
+        <tr class="nav_0 nav_c">
+            <th>{lang('html-376')}： </th>
+            <td>
+                {dr_field_input('thumb', 'File', $field['thumb']['setting'], $data['thumb'])}
+                <div class="onShow">{lang('html-381')}</div>
+            </td>
+        </tr>
+        <tr class="nav_0 nav_c">
+            <th>{lang('html-375')}： </th>
+            <td>
+                {dr_field_input('title', 'Text', $field['title']['setting'], $data['title'])}
+                <div class="onShow">{lang('html-380')}</div>
+            </td>
+        </tr>
+        <tr class="nav_0 nav_c">
+            <th>{lang('html-1005')}： </th>
+            <td>
+                {dr_field_input('description', 'Textarea', $field['description']['setting'], $data['description'])}
+                <div class="onShow">{lang('html-1006')}</div>
+            </td>
+        </tr>
+        <tr class="nav_0">
+            <th><font color="red">*</font>&nbsp;{lang('html-377')}： </th>
+            <td>
+                {dr_field_input('url', 'Text', $field['url']['setting'], $data['url'])}
+                <div class="onShow">{lang('html-382')}</div>
+
+            </td>
+        </tr>
+		<tr>
+			<th> </th>
+			<td><input value="{lang('submit')}" type="submit" name="submit" class="button" onclick="$('#dr_action').val('back')" />
+			</td>
+		</tr>
+		</table>
+		</form>
+	</div>
+	</div>
+</div>
+{template footer.html}

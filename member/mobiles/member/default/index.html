@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+	<head>
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+	    <meta charset="utf-8">
+	    <title>{$meta_name}</title>
+    	<meta name="keywords" content="{$meta_keywords}" />
+    	<meta name="description" content="{$meta_description}" />
+	    <link rel="stylesheet" type="text/css" href="{HOME_MOBILE_PATH}dist/reset.css" />
+	    <link rel="stylesheet" type="text/css" href="{HOME_MOBILE_PATH}dist/style.css" />
+	    <script type="text/javascript">var HOME_MOBILE_PATH = '{HOME_MOBILE_PATH}';</script>
+	</head>
+	<body>
+		<div class="pages bg">
+			<section class="widget_page">
+            	{template "header.html"}
+                
+                <div class="member">
+                	<div class="alert alert-info">
+                        欢迎<strong>{$member.username}{if $member.name}（{$member.name}）{/if}</strong>回来！
+                    </div>
+                	<ul>
+                    	<li>会员组：{$member.groupname}</li>
+                    	<li>会员等级：{$member.levelname}</li>
+                        <li>{SITE_EXPERIENCE}：{$member.experience}</li>
+                        <li>{SITE_SCORE}：{$member.score}</li>
+                        <li>{SITE_MONEY}：{$member.money}</li>
+                   	</ul>
+                </div>
+                
+                {template "footer.html", "/"}
+			</section>
+		</div>
+	</body>
+</html>

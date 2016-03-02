@@ -1,0 +1,1 @@
+var url = '{SITE_URL}index.php?c=api&title=10&description=10&m=data2&format=jsonp&auth={md5(SYS_KEY)}&param=list action=module module=news order=updatetime num=10';

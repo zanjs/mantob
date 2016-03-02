@@ -1,0 +1,96 @@
+{template header.html}
+<script type="text/javascript">
+    $(function(){
+        {if $result}
+            dr_tips('{$result}', 3);
+        {/if}
+         dr_category_select($("#dr_modelid").val());
+         dr_set_type({intval($data.type)});
+    });
+    function dr_category_select(mid) {
+        var type = $("#dr_type_id").val();
+        $.post("{dr_url('member/space/select')}&mid="+mid+"&type="+type+"&pid={$data.pid}&gid={$get.gid}", function(data){
+            $("#dr_category").html(data);
+        });
+    }
+    function dr_set_type(id) {
+        $(".dr_cat_hide").hide();
+        $(".dr_type_"+id).show();
+        $("#dr_type_id").val(id);
+        dr_category_select($("#dr_modelid").val(), id);
+
+    }
+</script>
+<div class="subnav">
+	<div class="content-menu ib-a blue line-x">
+		{$menu}
+	</div>
+    <div class="bk10"></div>
+    <div class="explain-col">
+        <font color="gray">{lang('html-718')}</font>
+    </div>
+	<div class="bk10"></div>
+	<div class="table-list col-tab">
+		<form action="" method="post" name="myform" id="myform">
+		<div class="contentList pad-10">
+				<table width="100%" class="table_form">
+				<tr>
+					<th width="200"><font color="red">*</font>&nbsp;{lang('html-713')}： </th>
+					<td>
+                        <input type="radio" value="0" {if $data.id}disabled{/if} onclick="dr_set_type(0)" name="data[type]" {if !$data.type}checked{/if} /> <label>外链</label>&nbsp;&nbsp;
+                        <input type="radio" value="1" {if $data.id}disabled{/if} onclick="dr_set_type(1)" name="data[type]" {if $data.type==1}checked{/if} /> <label>模型</label>&nbsp;&nbsp;
+                        <input type="radio" value="2" {if $data.id}disabled{/if} onclick="dr_set_type(2)" name="data[type]" {if $data.type==2}checked{/if} /> <label>单页</label>
+                    </td>
+				</tr>
+				<tr class="dr_cat_hide dr_type_1">
+					<th><font color="red">*</font>&nbsp;{lang('html-714')}： </th>
+					<td>
+                        <select name="data[modelid]" {if $data.id || $data.type}disabled{/if} id="dr_modelid" onchange="dr_category_select(this.value)">
+                        <option value="0"> -- </option>
+                        {list action=cache name=SPACE-MODEL}
+                        {if $t['setting'][$markrule]['use']}<option value="{$t.id}" {if $t.id==$data.modelid}selected{/if}> {$t.name} </option>{/if}
+                        {/list}
+                        </select>
+					</td>
+				</tr>
+				<tr>
+					<th><font color="red">*</font>&nbsp;{lang('html-715')}： </th>
+					<td>
+					<span id="dr_category">
+                    </span>
+					</td>
+				</tr>
+				<tr>
+					<th>{lang('html-716')}： </th>
+					<td>
+                        <input type="radio" value="0" name="data[showid]" {if !$data.showid}checked{/if} /> <label>{lang('m-293')}</label>&nbsp;&nbsp;
+                        <input type="radio" value="1" name="data[showid]" {if $data.showid==1}checked{/if} /> <label>{lang('m-294')}</label>&nbsp;&nbsp;
+                        <input type="radio" value="2" name="data[showid]" {if $data.showid==2}checked{/if} /> <label>{lang('m-295')}</label>&nbsp;&nbsp;
+                        <input type="radio" value="3" name="data[showid]" {if $data.showid==3}checked{/if} /> <label>{lang('m-296')}</label>
+
+                    </td>
+				</tr>
+				<tr>
+					<th>{lang('html-721')}： </th>
+					<td>
+                        <input type="text" value="{$data.name}" style="width:200px;" name="data[name]" class="input_text" />
+					</td>
+				</tr>
+				<tr class="dr_cat_hide dr_type_0">
+					<th>{lang('html-722')}： </th>
+					<td>
+                        <input type="text" value="{$data.link}" style="width:400px;" name="data[link]" class="input_text" />
+					</td>
+				</tr>
+                <tr>
+                    <th width="200" style="border:none;">&nbsp;</th>
+                    <td>
+                        <input class="button" type="submit" name="submit" value="{lang('submit')}" />
+                    </td>
+                </tr>
+				</table>
+		</div>
+		</form>
+	</div>
+</div>
+{template footer.html}

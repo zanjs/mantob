@@ -1,0 +1,123 @@
+<!doctype html>
+<html>
+	<head>
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+	    <meta charset="utf-8">
+	    <title>{$meta_title}</title>
+    	<meta name="keywords" content="{$meta_keywords}" />
+    	<meta name="description" content="{$meta_description}" />
+	    <link rel="stylesheet" type="text/css" href="{HOME_MOBILE_PATH}dist/reset.css" />
+	    <link rel="stylesheet" type="text/css" href="{HOME_MOBILE_PATH}dist/style.css" />
+	    <script type="text/javascript">var HOME_MOBILE_PATH = '{HOME_MOBILE_PATH}';</script>
+	</head>
+	<body>
+		<div class="pages">
+			<section class="widget_page">
+            	<!--顶部导航-->
+				<div class="ntop">
+					<h3>
+                    	<a class="btn_back" href="javascript:history.back(-1)"></a><span class="top-site">{MODULE_NAME}</span>
+                    </h3>
+                    <a class="ui-menu-trigger js-menubtn-top" href="{SITE_URL}index.php?c=sitemap"></a>
+				</div>
+                
+                <menu class="ui-categorys js-category-panel">
+                    <div class="search-box">
+                        <div class="search-cont">
+                            <form action="{SITE_URL}{APP_DIR}/index.php" method="get">
+                                <input name="c" type="hidden" value="search">
+                                <input type="text" class="txt" placeholder="请输入关键词" name="keyword" value="">
+                                <input type="submit" value="" class="search-btn">
+                            </form>
+                        </div>
+                    </div>
+                </menu>
+                
+                <div id="wrap">
+                    <div id="nav2_wrap">
+                        <div id="nav2">
+                            <ul>
+                                <li><a href="{SITE_URL}{APP_DIR}/">全部</a></li>
+                                {list action=category pid=0}
+                                <li><a href="{dr_mobile_category_url(APP_DIR, $t.id)}">{$t.name}</a></li>
+                                {/list}
+                            </ul>
+                            <span class="bar"></span>
+                        </div>
+                        <a id="arrow"><span>&gt;</span></a>
+                    </div>
+                </div>
+                
+                <div class="ui-refresh">
+                    <ul class="data-list">
+                        {template "index_data.html"}
+                    </ul>
+                    <div class="ui-refresh-down"></div>
+                    <!--setup方式带有class为ui-refresh-down或ui-refresh-up的元素必须加上，用于放refresh按钮-->
+                </div>
+                
+                {template "footer.html"}
+			</section>
+		</div>
+
+        <!--组件依赖css begin-->
+        <link rel="stylesheet" type="text/css" href="{HOME_MOBILE_PATH}assets/loading.default.css" />
+        <link rel="stylesheet" type="text/css" href="{HOME_MOBILE_PATH}assets/widget/refresh/refresh.default.css" />    <!--皮肤文件，若不使用该皮肤，可以不加载-->
+        <link rel="stylesheet" type="text/css" href="{HOME_MOBILE_PATH}assets/widget/navigator/navigator.css" />
+        <link rel="stylesheet" type="text/css" href="{HOME_MOBILE_PATH}assets/widget/navigator/navigator.default.css" /><!--皮肤文件，若不使用该皮肤，可以不加载-->
+        <!--组件依赖css end-->
+        <!--组件依赖js begin-->
+        <script type="text/javascript" src="{HOME_MOBILE_PATH}dist/zepto.js"></script>
+        <script type="text/javascript" src="{HOME_MOBILE_PATH}src/core/gmu.js"></script>
+        <script type="text/javascript" src="{HOME_MOBILE_PATH}src/core/event.js"></script>
+        <script type="text/javascript" src="{HOME_MOBILE_PATH}src/core/widget.js"></script>
+        <script type="text/javascript" src="{HOME_MOBILE_PATH}src/widget/refresh/refresh.js"></script>
+        <script type="text/javascript" src="{HOME_MOBILE_PATH}src/widget/refresh/lite.js"></script>   <!--向上拉动插件-->
+        
+		<script type="text/javascript" src="{HOME_MOBILE_PATH}src/extend/touch.js"></script>
+        <script type="text/javascript" src="{HOME_MOBILE_PATH}src/extend/iscroll.js"></script>
+        <script type="text/javascript" src="{HOME_MOBILE_PATH}src/extend/highlight.js"></script>
+        <script type="text/javascript" src="{HOME_MOBILE_PATH}src/extend/parseTpl.js"></script>
+        <script type="text/javascript" src="{HOME_MOBILE_PATH}src/widget/navigator/navigator.js"></script>
+        <script type="text/javascript" src="{HOME_MOBILE_PATH}src/widget/navigator/scrolltonext.js"></script>
+        <script type="text/javascript" src="{HOME_MOBILE_PATH}src/widget/navigator/scrollable.js"></script>
+        <!--组件依赖js end-->
+        <script type="text/javascript">
+            (function () {
+                /*组件初始化js begin*/
+                var dr_page = 1; // 记录当前页数
+                $('.ui-refresh').refresh({
+                    load: function (dir, type) {
+                        var me = this;
+                        dr_page++;
+                        $.get('{SITE_URL}{APP_DIR}/index.php?c=api&m=template&name=index_data.html&page='+dr_page, function (html) {
+                            
+                            $('.data-list').append(html);
+                            me.afterDataLoading();    //数据加载完成后改变状态
+                        });
+                    }
+                });
+                /*组件初始化js end*/
+				$('#nav').navigator();
+				var bar = $('#nav2 span.bar'),
+					left = $('#nav2 ul').offset().left;
+				$('#nav2').navigator({
+					select: function( e, index, li ){
+						bar.css({
+							left: li.offsetLeft - left,
+							width: li.childNodes[0].offsetWidth
+						});
+					},
+					ready: function() {
+						bar.appendTo($('#nav2').find('.ui-scroller'));
+					}
+				});
+		
+				$('#arrow').on('click', function(){
+					$('#nav2').iScroll( 'scrollTo', 100, 0, 400, true );
+				});
+
+            })();
+        </script>
+	</body>
+</html>

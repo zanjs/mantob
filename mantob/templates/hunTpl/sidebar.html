@@ -1,0 +1,44 @@
+    <div class="caselefttitle"><a href="" class="leftmore"></a></div>
+    	    <div class="caseleft">
+        <div class="caseleftimg">
+        {list action=module module=case  order=displayorder,updatetime num=4}
+          <a style="{if $key < 1}display:inline;{else}display:none;{/if}" href="{$t.url}" title="{$t.title}">
+            
+            <img src="{dr_thumb($t.thumb, 230,163)}" class="attachment-thumbnail wp-post-image"
+            alt="{$t.title}" title="{$t.title}" width="230px" height="163px" />
+           
+          </a>
+          
+          {/list}
+        </div>
+        <div class="caseleftmenu">
+        {list action=module module=case  order=displayorder,updatetime num=4}
+          <a class="cur" href="javascript:void(0);">
+           
+            <img src="{dr_thumb($t.thumb, 46,46)}" class="attachment-thumbnail wp-post-image"
+            alt="{$t.title}" title="{$t.title}" width="46px" height="46px" />
+           
+          </a>
+         {/list}
+        </div>      
+    </div>
+        
+    <div class="newslefttitle"></div>
+    <div class="newsleft">
+      	<ul>
+	    {list action=module module=news  order=updatetime num=10}
+	        <li><a href="{$t.url}"  title="{$t.title}">{$t.title}</a></li>               
+  		{/list}
+        </ul>
+    </div>
+    
+    <div class="lianxi">
+      <p> <img style="display: inline;" src="{HOME_THEME_PATH}images/lianxi_tel.jpg" data-original="{HOME_THEME_PATH}images/lianxi_tel.jpg"></p>
+      <strong>13778112085</strong>
+      <p> <img style="display: inline;" src="{HOME_THEME_PATH}images/lianxi_dz.jpg" data-original="{HOME_THEME_PATH}images/lianxi_dz.jpg"></p>
+      <span>
+      	北京市东城区 爱喜嘉年华B栋七楼七号
+      	<img src="{HOME_THEME_PATH}images/map.jpg" />
+      	<img src="{HOME_THEME_PATH}images/lianxi_map.png" />
+      </span> 
+    </div>   

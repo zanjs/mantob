@@ -1,0 +1,55 @@
+{template header.html}
+<script type="text/javascript">
+$(function() {
+	$(".table_form tr>th").attr("width", 200);
+	{if $error}
+	art.dialog.tips('<font color=red>{$error.msg}</font>', 3);
+	d_tips('{$error.error}', 0);
+	{/if}
+	{if $result}
+	art.dialog.tips('{$result}', 3, 1);
+	{/if}
+});
+function setflag(i) {
+    if (i == -1) {
+        $('#flag_back').show();
+    } else {
+        $('#flag_back').hide();
+    }
+}
+</script>
+<form action="" method="post" name="myform" id="myform">
+<input name="backurl" type="hidden" value="{$backurl}" />
+<div class="subnav">
+	<div class="content-menu ib-a blue line-x">
+		{$menu}
+	</div>
+	<div class="bk10"></div>
+    <div class="table-list col-tab">
+        <ul class="tabBut cu-li">
+            <li class="on">{lang('html-720')}</li>
+        </ul>
+        <div class="contentList pad-10 dr_table">
+        <table width="100%" class="table_form">
+        {$myfield}
+        <tr>
+            <th width="200"><font color="red">*</font>&nbsp;{lang('html-322')}： </th>
+            <td>
+                <select name="flagid" onchange="setflag(this.value)">
+                    <option value="1">{lang('html-320')}</option>
+                    <option value="-1" {if $data['backinfo']}selected="selected"{/if}>{lang('html-321')}</option>
+                </select>
+                <input id="flag_back" type="text" name="backcontent" value="{$data.backinfo.backcontent}" class="input-text" style="{if !$data.backinfo}display:none;{/if}width:80%;" />
+            </td>
+        </tr>
+        </table>
+        </div>
+    </div>
+</div>
+<div class="fixed-bottom">
+    <div class="fixed-but text-c">
+        <div class="button"><input value="{lang('114')}" type="submit" name="submit" class="cu" style="width:100px;" /></div>
+     </div>
+</div>
+</form>
+{template footer.html}

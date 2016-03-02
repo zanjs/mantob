@@ -1,0 +1,28 @@
+{template header.html}
+<script type="text/javascript">
+$(function(){
+	{if $result_error}
+	dr_tips('{$result_error}', 3);
+	{/if}
+});
+</script>
+<div class="content clearfix">
+	{template navigator.html}
+    <div class="article">
+    	<div class="section">
+            <div class="title"><strong>{$meta_name}</strong></div>
+            <div class="main">
+            	<form action="" method="post">
+                <table width="100%" class="table_form">
+                {$myfield}
+                <tr>
+                    <th width="160" style="border-bottom:none">&nbsp;</th>
+                    <td style="border-bottom:none;padding-top: 20px;"><div class="mbutton"><button value="" type="submit" class="blue_button">保存</button></div></td>
+                </tr>
+                </table>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{template footer.html}

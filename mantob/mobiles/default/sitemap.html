@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+	<head>
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+	    <meta charset="utf-8">
+	    <title>{$meta_title}</title>
+    	<meta name="keywords" content="{$meta_keywords}" />
+    	<meta name="description" content="{$meta_description}" />
+	    <link rel="stylesheet" type="text/css" href="{HOME_MOBILE_PATH}dist/reset.css" />
+	    <link rel="stylesheet" type="text/css" href="{HOME_MOBILE_PATH}dist/style.css" />
+	    <script type="text/javascript">var HOME_MOBILE_PATH = '{HOME_MOBILE_PATH}';</script>
+	</head>
+	<body>
+		<div class="pages">
+			<section class="widget_page">
+            	<!--顶部导航-->
+				<div class="ntop">
+					<h3>
+                    	<a href="{SITE_URL}" class="top-gohomepage"></a><span class="top-site">{SITE_NAME}</span>
+                    </h3>
+                    <a class="ui-menu-trigger js-menubtn-top" href="{SITE_URL}index.php?c=sitemap"></a>
+				</div>
+                
+                <menu class="ui-categorys js-category-panel">
+                    <div class="bd">
+                    	{list action=cache name=module return=m}
+                        <div class="ui-section-block">
+                            <div class="ui-catgory ui-catgory1">
+                                <a href="{SITE_URL}{$m.dirname}/">{$m.name}</a>
+                            </div>
+                        </div>
+                        <ul>
+                            {list action=category module=$m.dirname pid=0}
+                            <li class="li">
+                            <a href="{dr_mobile_category_url($m.dirname, $t.id)}">{$t.name}</a>
+                            </li>
+                            {/list}
+                        </ul>
+                        {/list}
+                        <div class="ui-section-block">
+                            <div class="ui-catgory ui-catgory1">
+                                <a href="javascript:;">其他</a>
+                            </div>
+                        </div>
+                        <ul>
+                            {list action=page module=index pid=0}
+                            <li class="li">
+                            <a href="{dr_mobile_page_url('', $t.id)}">{$t.name}</a>
+                            </li>
+                            {/list}
+                        </ul>
+                        <div class="search-box">
+                            <div class="search-cont">
+                                <form action="{SITE_URL}index.php" method="get">
+                                	<input name="c" type="hidden" value="so">
+                                    <input type="text" class="txt" placeholder="请输入关键词" name="keyword" value="">
+                                    <input type="submit" value="" class="search-btn">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </menu>
+                {template "footer.html"}
+			</section>
+		</div>
+	</body>
+</html>

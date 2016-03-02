@@ -1,0 +1,46 @@
+ <div class="ProductListD">
+    <!-- left -->
+    <div class="fl proThumbD">
+      <a href="{$t.url}">
+        <img src="{dr_thumb($t.thumb,538,350)}" alt="{$t.title}" />
+      </a>
+      <!-- 收藏Collection -->
+      <div class="zProCollection">
+        <a href="javascript:om_favorite({$t.id});" class="ProColla">加入收藏</a>
+        <div class="probg"></div>
+      </div>
+      <!-- 收藏Collection end-->
+    </div>
+    <!-- left end-->
+    <!-- right -->
+    <div class="fr proListCount">
+      <h1 class="zColumnTitle">{$t.title}</h1>
+      <!-- zSoftWen 编辑器-->
+      <div class="zSoftWen">
+        <p style="font-size:">
+          {$t.softtext}
+        </p>
+      </div>
+      <!-- zSoftWen 编辑器 end-->
+      <div class="listfooter">
+      <table class="listfooterTb">
+        <tr>
+          <td class="td1">
+            <a href="{$t.url}" class="zmore">更多&gt;</a>
+          </td>
+          <td class="td2">
+            <a href="" class="prozan"><span class="zanxing">★</span><span class="zannum">{$t.zan}</span></a>
+          </td>
+          <td class="td3">
+            <div class="bdsharebuttonbox"><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_more" data-cmd="more"></a></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+          </td>
+        </tr>
+      </table>
+
+      </div>
+    </div>
+    <!-- right end-->
+  </div>
+<!-- 1 end-->
+

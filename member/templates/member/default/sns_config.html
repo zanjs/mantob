@@ -1,0 +1,36 @@
+{template "header.html"}
+<script type="text/javascript">
+$(function(){
+    {if $save}
+        dr_tips('保存成功', 3, 1);
+    {/if}
+});
+</script>
+<div class="content clearfix">
+	{template "navigator.html"}
+    <div class="article">
+    	<div class="section">
+            <div class="title"><strong>{$meta_name}</strong></div>
+            <div class="main">
+                <form action="" method="post">
+                <input name="aa" type="hidden" value="aa" />
+                <table width="100%" class="table_form">
+                <tr>
+                    <th width="200">查看权限： </th>
+                    <td>
+                        <input type="checkbox" name="data[show_all]" {if $data.show_all}checked{/if} value="1" /><label>全站</label>&nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" name="data[show_fans]" {if $data.show_fans}checked{/if} value="1" /><label>我的粉丝</label>&nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" name="data[show_follow]" {if $data.show_follow}checked{/if} value="1" /><label>我关注的</label>&nbsp;&nbsp;&nbsp;
+                    </td>
+                </tr>
+                <tr>
+                    <th style="border-bottom:none">&nbsp;</th>
+                    <td style="border-bottom:none;padding-top: 20px;"><div class="mbutton"><button value="" type="submit" class="blue_button">保存</button></div></td>
+                </tr>
+                </table>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{template "footer.html"}

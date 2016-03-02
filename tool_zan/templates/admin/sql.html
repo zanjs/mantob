@@ -1,0 +1,28 @@
+{template header.html}
+<form action="" method="post" name="myform" id="myform">
+<div class="subnav">
+	<div class="content-menu ib-a blue line-x">
+		{$menu}<span>|</span><a href="http://www.mantob.net" target="_blank"><em>技术支持</em></a>
+	</div>
+	<div class="bk10"></div>
+	<div class="explain-col">
+		<font color="gray">当前系统的数据表前缀是：{$dbprefix}</font>
+	</div>
+	<div class="bk10"></div>
+	<div class="table-list">
+		<table width="100%" class="table_form">
+		<tr>
+			<th width="100"> </th>
+			<td><textarea class="input-text" name="sql" style="width:500px;height:200px"></textarea>
+			</td>
+		</tr>
+		<tr>
+			<th> </th>
+			<td><input value="执行SQL" type="submit" name="submit" class="button" />
+			</td>
+		</tr>
+		</table>
+	</div>
+</div>
+</form>
+{template footer.html}

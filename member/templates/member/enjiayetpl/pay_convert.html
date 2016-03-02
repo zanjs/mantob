@@ -1,0 +1,41 @@
+{template header.html}
+<script type="text/javascript">
+$(function(){
+	{if $result_error}
+	dr_tips("{$error}", 3);
+	{/if}
+});
+function dr_set_score(value) {
+	$("#dr_price").html(parseFloat(value/{intval(SITE_CONVERT)}));
+}
+</script>
+<div class="content clearfix">
+	{template navigator.html}
+    <div class="article">
+    	<div class="section">
+            <div class="title"><strong>{$meta_name}</strong></div>
+            <div class="main">
+                <form method="post" action="">
+				<table width="100%" class="table_form" style="margin-top:20px">
+                <tr>
+                    <th width="160">兑换比率： </th>
+                    <td>1 {SITE_MONEY}&nbsp;=&nbsp;{SITE_CONVERT}&nbsp;{SITE_SCORE}，可用{SITE_MONEY}&nbsp;<span class="dr_price">{$member.money}</span>&nbsp;。</td>
+                </tr>
+                <tr>
+                    <th><font color="red">*</font>&nbsp;兑换数量： </th>
+                    <td> <input type="text" value="" name="score" onblur="dr_set_score(this.value)" style="width:100px" class="input_text" />{SITE_SCORE}，&nbsp;&nbsp;需要&nbsp;<span class="dr_price" id="dr_price">0</span>&nbsp;{SITE_MONEY}&nbsp;。</td>
+                </tr>
+                <tr>
+                    <th style="border-bottom:none">&nbsp;</th>
+                    <td style="border-bottom:none;padding-top: 20px;"><div class="mbutton"><button value="" type="submit" class="blue_button">兑换</button></div></td>
+                </tr>
+				</table>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{template footer.html}

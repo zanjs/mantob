@@ -1,0 +1,77 @@
+{template "header.html", "/"}
+<script language="javascript">
+// 选中导航菜单
+$("#dr_nav_8").attr("class", "index");
+</script>
+<link rel="stylesheet" type="text/css" href="{HOME_THEME_PATH}css/list.css" />
+<div class="bk10"></div>
+<div class="main clear">
+    <div class="box cat-data">
+        <dl class="clear" style="border:none">
+            <dt style="margin-top:5px;"><strong>关键字搜索：</strong></dt>
+            <dd class="AttrBox">
+                <input onkeypress="if(event.keyCode==13) {searchByClass();return false;}" type='text' name='keyword' value='{$keyword}' id='dr_search_keyword' class="examtext02" />
+                <input onclick="searchByClass()" type='button' value='搜索' class="exambtn02"/>
+                <script type="text/javascript">
+                    function searchByClass(){
+                        var url="{dr_space_search_url($params, 'keyword', 'mantobcom')}";
+                        var value=$("#dr_search_keyword").val();
+                        if (value == "输入关键字") {
+                            value = '';
+                        }
+                        location.href=url.replace('mantobcom', value);
+                    }
+                </script>
+            </dd>
+        </dl>
+    </div>
+    <div class="col-left">
+        <div class="category-main box generic info-content">
+            <div class="title">
+                <strong>会员空间</strong>
+            </div>
+            <ul class="info-top">
+                <li class="pic"></li>
+                <li class="jiage">人气</li>
+                <li class="info">空间信息</li>
+            </ul>
+            {list action=space $where page=1 pagesize=8 urlrule=$urlrule}<!--循环显示8条-->
+            <ul class="info-item clear">
+                <li class="pic">
+                    <div class="img-wrap">
+                        <a href="{dr_space_url($t.uid)}" target="_blank"><img src="{dr_thumb($t.logo, 110, 90)}" width="110" height="90" /></a></div>
+                </li>
+                <li class="jiage">
+                    <p style="padding-top:25px"><strong>{$t.hits}</strong></p>
+                </li>
+                <li class="info">
+                    <h2><a href="{dr_space_url($t.uid)}" target="_blank">{dr_keyword_highlight($t.name, $keyword)}</a></h2>
+                    <p style="line-height:15px">{$t.description}</p>
+                </li>
+            </ul>
+            {/list}{$error}
+            <div id="pages" class="text-c">{$pages}</div>
+        </div>
+    </div>
+    <div class="col-auto">
+        <div class="box">
+            <h5 class="title-2">达人空间</h5>
+            <ul class="content digg">
+                <!--查询推荐位1（达人空间）的内容，field需要用到的字段（不填表示全部），按displayorder（后台指定排序）排序-->
+                {list action=space flag=1 field=name,uid,logo order=displayorder num=6}
+                <li><a href="{dr_space_url($t.uid)}" title="{$t.name}">{dr_strcut($t.name, 27)}</a></li>
+                {/list}
+            </ul>
+        </div>
+        <div class="bk10"></div>
+        <div class="box">
+            <h5 class="title-2">热门空间</h5>
+            <ul class="content digg">
+                {list action=space field=uid,name order=hits num=10}
+                <li><a href="{dr_space_url($t.uid)}" title="{$t.name}">{dr_strcut($t.name, 27)}</a></li>
+                {/list} {$error}
+            </ul>
+        </div>
+    </div>
+</div>
+{template "footer.html","/"}

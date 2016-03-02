@@ -1,0 +1,16 @@
+/* 
+* @Author: zan
+* @Date:   2014-09-05 14:25:59
+* @Last Modified by:   zan
+* @Last Modified time: 2014-09-05 15:43:52
+*/
+/*订单打印 样式*/
+body fieldset {
+position: relative;
+overflow: hidden;
+margin-top: 10px;
+}
+.z-table-d{
+    border: 1px solid #D8D8D8;
+    padding: 10px;
+}

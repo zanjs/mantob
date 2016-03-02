@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+	<head>
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+	    <meta charset="utf-8">
+	    <title>{$meta_title}</title>
+    	<meta name="keywords" content="{$meta_keywords}" />
+    	<meta name="description" content="{$meta_description}" />
+	    <link rel="stylesheet" type="text/css" href="{HOME_MOBILE_PATH}dist/reset.css" />
+	    <link rel="stylesheet" type="text/css" href="{HOME_MOBILE_PATH}dist/style.css" />
+	    <script type="text/javascript">var HOME_MOBILE_PATH = '{HOME_MOBILE_PATH}';</script>
+	</head>
+	<body>
+		<div class="pages" style="background:#FFF;">
+			<section class="widget_page">
+            	<!--顶部导航-->
+				<div class="ntop">
+					<h3>
+                    	<a class="btn_back" href="javascript:history.back(-1)"></a><span class="top-site">{MODULE_NAME}</span>
+                    </h3>
+                    <a class="ui-menu-trigger js-menubtn-top" href="{SITE_URL}index.php?c=sitemap"></a>
+				</div>
+
+
+       			 <div class="article">
+                    <div class="info">
+                        <h1>{$title}</h1>
+                
+                        <p>作者：{$author}&nbsp;&nbsp;分类：<a href="{dr_mobile_category_url(APP_DIR, $catid)}">{$cat.name}</a>&nbsp;&nbsp;阅读：{dr_show_hits($id)}</p>
+                    </div>
+                    <div class="text">
+                       {$content}
+                    </div>
+                </div>
+                
+                <menu class="ui-categorys js-category-panel">
+                    <div class="search-box">
+                        <div class="search-cont">
+                            <form action="{SITE_URL}{APP_DIR}/index.php" method="get">
+                                <input name="c" type="hidden" value="search">
+                                <input type="text" class="txt" placeholder="请输入关键词" name="keyword" value="">
+                                <input type="submit" value="" class="search-btn">
+                            </form>
+                        </div>
+                    </div>
+                </menu>
+
+                
+                {template "footer.html"}
+			</section>
+		</div>
+
+        
+	</body>
+</html>

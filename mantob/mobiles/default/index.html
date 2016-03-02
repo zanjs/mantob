@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+	<head>
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+	    <meta charset="utf-8">
+	    <title>{$meta_title}</title>
+    	<meta name="keywords" content="{$meta_keywords}" />
+    	<meta name="description" content="{$meta_description}" />
+	    <link rel="stylesheet" type="text/css" href="{HOME_MOBILE_PATH}dist/reset.css" />
+	    <link rel="stylesheet" type="text/css" href="{HOME_MOBILE_PATH}dist/style.css" />
+	    <script type="text/javascript">var HOME_MOBILE_PATH = '{HOME_MOBILE_PATH}';</script>
+	</head>
+	<body>
+		<div class="pages">
+			<section class="widget_page">
+            	<!--顶部导航-->
+				<div class="ntop">
+					<h3>
+                    	<a href="{SITE_URL}" class="top-gohomepage"></a><span class="top-site">{SITE_NAME}</span>
+                    </h3>
+                    <a class="ui-menu-trigger js-menubtn-top" href="{SITE_URL}index.php?c=sitemap"></a>
+				</div>
+                <!--首页幻灯-->
+                <div id="slider">
+                	{list action=navigator type=1}
+                    <div>
+                        <a href="{str_replace(SITE_PC, SITE_URL, $t.url)}"><img src="{dr_get_file($t.thumb)}" alt="{$t.name}"></a>
+                        <p>{$t.title}</p>
+                    </div>
+                    {/list}
+                </div>
+                <!--循环所有模块，查询最新5条记录-->
+                {list action=cache name=module return=m}
+                <div class="ui-section-block">
+                    <div class="ui-catgory">
+                        <h2 class="ui-category-title">{$m.name}</h2>
+                    </div>
+                    <div class="ui-mod-lists ui-cate-list">
+                	<ul>
+                    	{list action=module module=$m.dirname num=5 order=updatetime}
+                        <li> <a href="{dr_mobile_show_url($m.dirname, $t.id)}">{$t.title}</a> </li>
+                        {/list}
+                    </ul>
+                	<a href="{SITE_URL}{$m.dirname}/" class="ui-more">查看{$m.name}</a>
+            		</div>
+               	</div>
+                {/list}
+                {template "footer.html"}
+			</section>
+		</div>
+
+        <!--组件依赖css begin-->
+        <link rel="stylesheet" type="text/css" href="{HOME_MOBILE_PATH}assets/widget/slider/slider.css" />
+        <link rel="stylesheet" type="text/css" href="{HOME_MOBILE_PATH}assets/widget/slider/slider.default.css" /> <!--皮肤文件，若不使用该皮肤，可以不加载-->
+        <!--组件依赖css end-->
+        <!--组件依赖js begin--> 
+        <script type="text/javascript" src="{HOME_MOBILE_PATH}dist/zepto.js"></script>
+        <script type="text/javascript" src="{HOME_MOBILE_PATH}src/extend/touch.js"></script>
+        <script type="text/javascript" src="{HOME_MOBILE_PATH}src/extend/matchMedia.js"></script>
+        <script type="text/javascript" src="{HOME_MOBILE_PATH}src/extend/event.ortchange.js"></script>
+        <script type="text/javascript" src="{HOME_MOBILE_PATH}src/extend/parseTpl.js"></script>
+        <script type="text/javascript" src="{HOME_MOBILE_PATH}src/core/gmu.js"></script>
+        <script type="text/javascript" src="{HOME_MOBILE_PATH}src/core/event.js"></script>
+        <script type="text/javascript" src="{HOME_MOBILE_PATH}src/core/widget.js"></script>
+        <script type="text/javascript" src="{HOME_MOBILE_PATH}src/widget/slider/slider.js"></script>
+        <script type="text/javascript" src="{HOME_MOBILE_PATH}src/widget/slider/arrow.js"></script>
+        <script type="text/javascript" src="{HOME_MOBILE_PATH}src/widget/slider/dots.js"></script>
+        <script type="text/javascript" src="{HOME_MOBILE_PATH}src/widget/slider/touch.js"></script>
+        <script>
+            //创建slider组件
+            $('#slider').slider({loop:true});
+        </script>
+	</body>
+</html>

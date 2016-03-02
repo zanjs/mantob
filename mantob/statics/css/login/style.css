@@ -1,0 +1,1115 @@
+/* 
+* @Author: zan
+* @Date:   2014-09-18 10:14:46
+* @Last Modified by:   zan
+* @Last Modified time: 2014-09-18 11:55:02
+*/
+
+/***
+Import fonts
+***/
+@import url(http://fonts.useso.com/css?family=Open+Sans:300italic,400italic,600italic,300,400,600);
+
+/***
+Reset and overrides  
+***/
+/* general body settings */
+body { 
+  color: #000; 
+  padding: 0px !important;
+  margin: 0px !important;
+  font-size:13px; 
+}
+body a{
+    color: #222;
+}
+/***
+General typography 
+***/
+h3 small, h4 small, h5 small {
+  color: #444;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 300;
+}
+
+h1.block, h2.block, h3.block, h4.block, h5.block, h6.block {
+  padding-bottom: 10px;
+}
+
+a {
+  text-shadow: none !important;
+  color: #0d638f;
+}
+
+/***
+General backgrounds
+***/
+.bg-blue {
+  background-image: none !important;
+  background-color: #4b8df8 !important;
+}
+
+.bg-red {
+  background-image: none !important;
+  background-color: #e02222 !important;
+}
+
+.bg-yellow {
+  background-image: none !important;
+  background-color: #ffb848 !important;
+}
+
+.bg-green {
+  background-image: none !important;
+  background-color: #35aa47 !important;
+}
+
+.bg-purple {
+  background-image: none !important;
+  background-color: #852b99 !important;
+}
+
+.bg-grey {
+  background-image: none !important;
+  background-color: #555555 !important;
+}
+
+/***
+Apply fix for font awesome icons.
+***/
+[class^="icon-"], 
+[class*=" icon-"],
+[class^="icon-"]:hover, 
+[class*=" icon-"]:hover { 
+  background: none !important;
+}
+
+/***
+Close icon used for modal dialog and other UI element close buttons
+***/
+.close {
+  display: inline-block;
+  margin-top: 0px;
+  margin-right: 0px;
+  width: 9px;
+  height: 9px;
+  background-repeat: no-repeat !important;
+  background-image: url("../img/remove-icon-small.png") !important;
+}
+
+/***
+ie8 & ie9 modes
+***/
+.visible-ie8 {
+  display: none;
+}
+
+.ie8 .visible-ie8 {
+  display: inherit !important;
+}
+
+.visible-ie9 {
+  display: none;
+}
+
+.ie9 .visible-ie9 {
+  display: inherit !important;
+}
+
+.hidden-ie8 {
+  display: inherit;
+}
+
+.ie8 .hidden-ie8 {
+  display: none !important;
+}
+
+.hidden-ie9 {
+  display: inherit;
+}
+
+.ie9 .hidden-ie9 {
+  display: none !important;
+}
+
+/***
+Fix link outlines after click
+***/
+a,a:focus, a:hover, a:active {
+  outline: 0;
+}
+
+/***
+IE8 fix for form input height in fluid rows
+***/
+.ie8 .row-fluid [class*="span"] {
+    min-height: 20px !important;
+}
+
+/***
+Fix grid offset used for reponsive layout handling(refer app.js=>handleResponsive)
+***/
+.fix-offset {
+  margin-left: 0px !important;
+}
+
+/***
+Misc tools
+***/
+.visible-ie8 {
+  display: none
+}
+
+.no-padding {
+  padding: 0px !important;
+}
+
+.no-margin {
+  margin: 0px !important;
+}
+
+.no-bottom-space {
+  padding-bottom:0px !important;
+  margin-bottom: 0px !important;
+}
+
+.no-top-space {
+  padding-top:0px !important;
+  margin-top: 0px !important;
+}
+
+.space5 {
+  display: block;
+  height: 5px !important;
+  clear: both;
+}
+
+.space7 {
+  height: 7px !important;
+  clear: both;
+}
+
+.space10 {
+  height: 10px !important;
+  clear: both;
+}
+
+.space12 {
+  height: 12px !important;
+  clear: both;
+}
+
+.space15 {
+  height: 15px !important;
+  clear: both;
+}
+
+.space20 {
+  height: 20px !important;
+  clear: both;
+}
+
+.no-space {
+  margin: 0px !important;
+  padding: 0px !important;
+}
+
+.no-text-shadow {
+  text-shadow: none !important;
+}
+
+.no-left-padding {
+  padding-left: 0 !important;
+}
+
+.no-left-margin {
+  margin-left: 0 !important;
+}
+
+.margin-bottom-10 {
+  margin-bottom: 10px !important;
+}
+
+.hide {
+  display: none;
+}
+
+.bold {
+  font-weight:600 !important;
+}
+
+.fix-margin {
+  margin-left: 0px !important
+}
+
+.border {
+  border: 1px solid #ddd
+}
+
+hr {
+  margin: 20px 0;
+  border: 0;
+  border-top: 1px solid #E0DFDF;
+  border-bottom: 1px solid #FEFEFE;
+}
+
+
+/********************
+ GENERAL UI ELEMENTS 
+*********************/
+
+/***
+Icon stuff
+***/
+i.icon, a.icon {
+  color: #999;
+  margin-right: 5px;
+  font-weight: normal;
+  font-size: 13px;
+}
+
+i.icon-black {
+  color: #000 !important;
+}
+
+a.icon:hover {
+  text-decoration: none;
+  -webkit-transition: all 0.1s ease-in-out;
+  -moz-transition: all 0.1s ease-in-out;
+  -o-transition: all 0.1s ease-in-out;
+  -ms-transition: all 0.1s ease-in-out;
+  transition: all 0.1s ease-in-out;
+  opacity: .4;
+  filter:alpha(opacity=40);
+}
+
+a.icon.huge i{
+  font-size: 16px !important;
+}
+
+i.big {
+  font-size: 20px;
+}
+
+i.warning {
+  color: #d12610;
+}
+
+i.critical {
+  color: #37b7f3;
+}
+
+i.normal {
+  color: #52e136;
+}
+
+/***
+Custom wells
+***/
+.well {
+  background-color: #fafafa;
+  border: 1px solid #eee;
+  -webkit-border-radius: 0px;
+     -moz-border-radius: 0px;
+          border-radius: 0px;   
+  -webkit-box-shadow: none !important;
+     -moz-box-shadow: none !important;
+          box-shadow: none !important;        
+}
+
+.well.mini {
+  padding: 7px !important;
+}
+
+/***
+Form stuff
+***/
+h3.form-section {
+  font-size: 22px;
+  font-weight: 300;
+  border-bottom:1px solid #eee;
+  margin: 15px 0 15px 0;
+}
+
+.form form {
+  margin: 0px !important;
+  padding: 0px !important;
+}
+
+.no-bottom-space {
+  padding-bottom: 0px !important;
+  margin-bottom: 0px !important;
+}
+
+.form .form-actions{
+  margin-top: 0px !important;
+  margin-top: 40px;
+  padding-left: 190px;
+}
+
+.portlet.box .form .form-actions,
+.portlet.solid .form .form-actions {
+  margin-left:-10px !important;
+  margin-right:-10px !important;
+  margin-bottom: -10px !important;
+} 
+
+/***
+Bordered form layout
+***/
+
+/***
+Input icons
+***/
+/* input with right aligned and colored icons */
+.input-icon input {
+  padding-right: 25px !important;
+}
+
+.input-icon .input-info,
+.input-icon .input-error, 
+.input-icon .input-warning, 
+.input-icon .input-success {
+  display: inline-block !important;
+  position: relative !important;
+  top: 7px;
+  right: 25px !important;
+  font-size: 16px;
+}
+
+.input-icon .input-info {
+  color:#27a9e3;
+}
+.input-icon .input-error {
+  color:#B94A48;
+}
+.input-icon .input-warning {
+  color: #C09853;
+}
+.input-icon .input-success {
+  color: #468847;
+}
+
+/* input with left aligned icons */
+.input-icon.left i {
+  color: #ccc;
+  display: block !important;
+  position: absolute !important;
+  z-index: 1;
+  margin: 9px 2px 4px 10px; 
+  width: 16px;
+  height: 16px;
+  border1: 1px solid #ddd;
+  font-size: 16px;
+  text-align: center;
+}
+
+.input-icon.left input {
+  padding-left: 33px !important;
+}
+
+/***
+Portlets
+***/
+.portlet  {
+  clear: both;
+  margin-top: 0px;
+  margin-bottom: 25px;
+  padding: 0px;
+}
+
+.portlet:after, .portlet:before {
+  display: table;
+  color: "";
+}
+
+.portlet-title {  
+  margin-bottom: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.portlet-title h4 {
+  display: inline-block;
+  font-size: 18px;
+  font-weight: 400;
+  margin: 0;
+  padding: 0;
+  margin-bottom: 7px; 
+}
+
+.portlet-title h4 i {
+  font-size: 13px;
+  margin-right: 5px;
+  color: #666;
+}
+
+.portlet.blue .portlet-title h4, .portlet-title.blue h4, 
+.portlet.green .portlet-title h4, .portlet-title.green h4,
+.portlet.yellow .portlet-title h4, .portlet-title.yellow h4,
+.portlet.red .portlet-title h4, .portlet-title.red h4,
+.portlet.purple .portlet-title h4, .portlet-title.purple h4,
+.portlet.dark-grey .portlet-title h4, .portlet-title.dark-grey h4, {
+  color: #fff;
+}
+
+.portlet.box.blue .portlet-title h4 > i, 
+.portlet.box.green .portlet-title h4 > i,
+.portlet.box.grey .portlet-title h4 > i,
+.portlet.box.yellow .portlet-title h4 > i, 
+.portlet.box.red .portlet-title h4 > i,  
+.portlet.box.purple .portlet-title h4 > i, 
+.portlet.box.light-grey .portlet-title h4 > i{
+  color: #fff;
+}
+
+.sortable .portlet .portlet-title {
+  cursor: move;
+}
+
+.portlet-title .tools,
+.portlet-title .actions
+ {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  margin-top: 6px;
+  float: right;
+}
+
+.portlet-title .tools > a {
+  display: inline-block;
+  height: 16px;
+  margin-left:5px;
+}
+
+.portlet-title .dropdown-menu i {
+  color: #000 !important;
+}
+
+.portlet-title .tools > a.remove {
+  background-image:url(../img/portlet-remove-icon.png);
+  background-repeat: no-repeat;
+  width: 11px;
+}
+
+.portlet-title .tools > a.config {
+  background-image:url(../img/portlet-config-icon.png);
+  background-repeat: no-repeat;
+  width: 12px;
+}
+
+.portlet-title .tools > a.reload {
+  background-image:url(../img/portlet-reload-icon.png);
+  width: 13px;
+}
+
+.portlet-title .tools > a.expand {
+  background-image:url(../img/portlet-expand-icon.png);
+  width: 14px;
+}
+
+.portlet-title .tools > a.collapse {
+  background-image:url(../img/portlet-collapse-icon.png);
+  width: 14px;
+}
+
+.portlet-title .tools > a:hover {
+  text-decoration: none;
+  -webkit-transition: all 0.1s ease-in-out;
+  -moz-transition: all 0.1s ease-in-out;
+  -o-transition: all 0.1s ease-in-out;
+  -ms-transition: all 0.1s ease-in-out;
+  transition: all 0.1s ease-in-out;
+  opacity:.6;  
+  filter:'alpha(opacity=60)';
+}
+
+.portlet-title .actions > .btn-group {
+  margin-top: -12px;
+}
+
+.portlet-title .actions > .btn {
+  padding: 4px 10px;
+  margin-top: -13px;
+}
+
+.portlet-title .actions > .btn-group > .btn {
+  padding: 4px 10px;
+  margin-top: -1px;
+}
+
+.portlet-title .actions > .btn-group > .btn.mini {
+  margin-top: 0px;
+}
+
+.portlet-title .actions > .btn.mini {
+  margin-top: -12px;
+  padding: 4px 10px;
+}
+
+.portlet-title .pagination.pagination-small {
+  float: right !important;
+  display: inline-block !important;
+  margin: 0px;
+  margin-top: -2px;
+}
+
+.portlet-body {
+  clear: both;  
+  padding: 0;  
+}
+
+.portlet-body.light-blue, 
+.portlet.light-blue {
+  background-color: #bfd5fa  !important;
+}
+
+.portlet-body.blue, .portlet.blue {
+  background-color: #4b8df8 !important;
+}
+
+.portlet-body.red, .portlet.red {
+  background-color: #e02222 !important;
+}
+
+.portlet-body.yellow, .portlet.yellow {
+  background-color: #ffb848 !important;
+}
+
+.portlet-body.green, .portlet.green {
+  background-color: #35aa47 !important;
+}
+
+.portlet-body.purple, .portlet.purple {
+  background-color: #852b99 !important;
+}
+
+.portlet-body.light-grey, .portlet.light-grey {
+  background-color: #fafafa !important;
+}
+
+.portlet-body.dark-grey, .portlet.dark-grey {
+  background-color: #555555 !important;
+}
+
+.portlet-body .btn-toolbar {
+  margin: 0px !important;
+  padding: 0px !important;
+}
+
+.portlet-body .btn-group {
+  margin: 0px !important;
+  padding: 0px !important;
+  margin-bottom: 10px !important;
+}
+
+/*  draggable girds */
+
+ .ui-sortable-placeholder { 
+    border: 1px dotted black; 
+    visibility: visible !important; 
+    height: 100% !important; 
+}
+  
+.ui-sortable-placeholder * { 
+  visibility: hidden; 
+}
+
+.sortable-box-placeholder {
+  background-color: #f5f5f5;
+  border: 1px dashed #DDDDDD;
+  display: block;
+  /* float: left;*/
+  margin-top: 0px !important;
+  margin-bottom: 24px !important;
+}
+
+.sortable-box-placeholder * {
+  visibility:hidden;
+}
+
+/***
+Solid colored portlet
+***/
+.portlet.solid {
+  padding: 10px;
+}
+
+.portlet.solid .portlet-title .tools {
+  margin-top: 2px;
+  border: 0px;
+}
+
+.portlet.solid .portlet-title {
+  margin-bottom: 5px;
+  border: 0px;
+}
+
+.portlet.solid.bordered .portlet-title {
+  margin-bottom: 15px;
+}
+
+.portlet.solid.red .portlet-title,
+.portlet.solid.red .portlet-title i,
+.portlet.solid.red .portlet-body,
+
+.portlet.solid.green .portlet-title,
+.portlet.solid.green .portlet-title i,
+.portlet.solid.green .portlet-body,
+
+.portlet.solid.yellow .portlet-title,
+.portlet.solid.yellow .portlet-title i,
+.portlet.solid.yellow .portlet-body,
+
+.portlet.solid.grey .portlet-title,
+.portlet.solid.grey .portlet-title i,
+.portlet.solid.grey .portlet-body,
+
+.portlet.solid.purple .portlet-title,
+.portlet.solid.purple .portlet-title i,
+.portlet.solid.purple .portlet-body,
+
+.portlet.solid.blue .portlet-title,
+.portlet.solid.blue .portlet-title i,
+.portlet.solid.blue .portlet-body {
+  border: 0;
+  color: #fff;
+}
+
+.portlet.bordered {
+  border-left: 2px solid #ddd;
+}
+
+/***
+Box portlet
+***/
+
+
+.portlet.box {
+   padding:0px !important
+}
+
+.portlet.box .portlet-title {  
+   padding:8px 10px 2px 10px;
+   border-bottom: 1px solid #eee;
+   color: #fff !important;
+}
+
+.portlet.box .portlet-title > .actions > .btn > i {
+  color: #fff !important;
+}
+
+.portlet.box .portlet-title .tools {
+  margin-top: 3px;
+}
+
+.portlet.box .portlet-title .tools > a.remove, 
+.portlet.solid .portlet-title .tools > a.remove {
+  background-image:url(../img/portlet-remove-icon-white.png);
+}
+
+.portlet.box .portlet-title .tools > a.config,
+.portlet.solid .portlet-title .tools > a.config {
+  background-image:url(../img/portlet-config-icon-white.png);
+}
+
+.portlet.box .portlet-title .tools > a.reload,
+.portlet.solid .portlet-title .tools > a.reload {
+  background-image:url(../img/portlet-reload-icon-white.png);
+}
+
+.portlet.box .portlet-title .tools > a.expand,
+.portlet.solid .portlet-title .tools > a.expand {
+  background-image:url(../img/portlet-expand-icon-white.png);
+}
+
+.portlet.box .portlet-title .tools > a.collapse,
+.portlet.solid .portlet-title .tools > a.collapse {
+  background-image:url(../img/portlet-collapse-icon-white.png);
+}
+
+/* portlet buttons */
+.portlet.box .portlet-body {
+  background-color: #fff;
+  padding: 10px;
+}
+
+.portlet.box .portlet-title {  
+  margin-bottom: 0px;
+}
+
+.portlet.box.blue .portlet-title {
+  background-color: #4b8df8;
+} 
+
+.portlet.box.blue {  
+   border: 1px solid #b4cef8;
+   border-top: 0;
+}
+
+.portlet.box.red .portlet-title {
+  background-color: #e02222;
+} 
+
+.portlet.box.red {  
+   border: 1px solid #ef8476;
+   border-top: 0;
+}
+
+.portlet.box.yellow .portlet-title {
+  background-color: #ffb848;
+} 
+
+.portlet.box.yellow {  
+   border: 1px solid #fccb7e;
+   border-top: 0;
+}
+
+.portlet.box.green .portlet-title {
+  background-color: #35aa47;
+} 
+
+.portlet.box.green {  
+   border: 1px solid #77e588;
+   border-top: 0;
+}
+
+.portlet.box.purple .portlet-title {
+  background-color: #852b99;
+} 
+
+.portlet.box.purple {  
+   border: 1px solid #af5cc1;
+   border-top: 0;
+}
+
+.portlet.box.grey .portlet-title {
+  background-color: #555555;
+} 
+
+.portlet.box.grey {  
+   border: 1px solid #9d9c9c;
+   border-top: 0;
+}
+
+.portlet.box.light-grey .portlet-title {
+  background-color: #aaa;
+} 
+
+.portlet.box.light-grey {  
+   border: 1px solid #eee;
+   border-top: 0;
+}
+
+/***
+Charts and statistics
+***/
+.chart, .pie, .bars {
+  overflow: hidden;
+  height: 300px;
+}
+
+/***
+Statistic lists
+***/
+.item-list.table .percent {
+  width: 30px;
+  float: right;
+  margin-right: 10px;
+  margin-top: 3px;
+}
+
+.item-list.table .title {
+  padding-top: -5px;
+}
+
+/***
+Chart tooltips
+***/
+.chart-tooltip {
+  clear: both;
+  z-index: 100;
+  background-color: #736e6e !important;
+  padding: 5px !important;
+  color: #fff;
+}
+
+.chart-tooltip .label {
+  clear: both;
+}
+
+/***
+Mini chart containers
+***/
+.bar-chart {
+  display: none
+}
+
+.line-chart {
+  display: none
+}
+
+/***
+Custom icon buttons
+***/
+.icon-btn {
+  height: 70px;
+  width: 50px;
+  margin: 10px 0px 10px 0px;
+  border: 1px solid #ddd;
+  padding: 16px 0px 0px 0px;
+  background-color: #fafafa !important;
+  background-image: none !important;
+  filter:none !important;
+  -webkit-box-shadow: none !important;
+     -moz-box-shadow: none !important;
+          box-shadow: none !important;
+  display:block !important;
+  color: #646464 !important;
+  text-shadow: none !important;
+  text-align: center;
+  cursor: pointer;
+  position: relative;  
+  -webkit-transition: all 0.3s ease !important;
+  -moz-transition: all 0.3s ease !important;
+  -ms-transition: all 0.3s ease !important;
+  -o-transition: all 0.3s ease !important;
+  transition: all 0.3s ease !important;
+}
+
+.ie8 .icon-btn:hover {
+  filter: none !important;
+} 
+
+.icon-btn:hover {
+  text-decoration: none !important;
+  border-color: #999 !important;
+  color: #444 !important;
+  text-shadow: 0 1px 0px rgba(255, 255, 255, 1) !important;
+  -webkit-transition: all 0.3s ease !important;
+  -moz-transition: all 0.3s ease !important;
+  -ms-transition: all 0.3s ease !important;
+  -o-transition: all 0.3s ease !important;
+  transition: all 0.3s ease !important;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  box-shadow: none !important;
+}
+
+.icon-btn:hover .badge {
+  -webkit-transition: all 0.3s ease !important;
+  -moz-transition: all 0.3s ease !important;
+  -ms-transition: all 0.3s ease !important;
+  -o-transition: all 0.3s ease !important;
+  transition: all 0.3s ease !important;
+  -webkit-box-shadow: none !important;
+       -moz-box-shadow: none !important;
+            box-shadow: none !important;
+}
+
+.icon-btn i {
+  font-size: 20px !important;
+  color: #777 !important;
+}
+
+.icon-btn .glyphicons {
+  padding: 0px;
+}
+
+.icon-btn .glyphicons i:before {  
+  font-size: 20px !important;
+  color: #777 !important;
+}
+
+.icon-btn div {
+  
+  margin-top: 5px;
+  margin-bottom: 20px;  
+  color: #000;
+  font-size: 11px;
+  font-weight: 300;
+}
+
+.icon-btn .badge {
+  position: absolute;
+  
+  font-size: 11px !important;
+  font-weight: 300;
+  top: -5px;
+  right: -5px;
+  padding: 3px 7px 3px 7px;
+  color: white !important;
+  text-shadow: none;
+  border-width: 0;
+  border-style: solid;
+  -webkit-border-radius: 12px !important;
+  -moz-border-radius: 12px !important;
+  border-radius: 12px !important;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
+/* for firefox only */
+@-moz-document url-prefix() { 
+  .icon-btn .badge {
+      padding: 2px 7px 4px 7px;
+  }
+}  
+
+
+
+
+/***
+Login page
+***/
+
+/* logo page */
+.login {
+  background-color: #444 !important;
+}
+
+.login .logo {
+  width: 247px;
+  margin: 0 auto;   
+  margin-top:60px;
+  padding: 15px;
+  text-align: center;
+}  
+
+.login .content {
+  background-color:#fff; 
+  width: 291px;
+  margin: 0 auto; 
+  margin-bottom: 50px;
+  padding: 30px;  
+  padding-top: 20px;  
+  padding-bottom: 15px;  
+}
+
+.login .content h3 {
+  color: #000;
+}
+.login .content h4  {
+  color: #555;
+  height: 30px;
+  font-size: 16px;
+  cursor:help;
+  padding:0px;
+  border-bottom: 1px solid #CCC;
+}
+
+.login .content p {
+  color: #222;
+}
+
+.login .content .login-form,
+.login .content .forget-form {
+    padding: 0px;
+    margin: 0px;
+}
+
+.login .content .m-wrap {
+  width: 249px;
+  border-left: 0 !important;
+}
+
+.login .content .input-icon {
+  border-left: 2px solid #219805 !important;
+}
+
+.login .content .control-group {
+  margin-bottom: 20px !important;
+}
+
+.login .content .input-icon .m-wrap {  
+  margin: 0px !important;
+}
+
+.login .content .forget-form {
+  display: none;
+}
+
+.login .content .register-form {
+  display: none;
+}
+
+.login .content .form-title {
+  font-weight: 300;
+  margin-bottom: 25px;
+  font-size: 24px;
+  font-family: 微软雅黑;
+}
+
+.login .content .form-actions {
+  background-color: #fff;
+  clear: both;
+  border: 0px;
+  border-bottom: 1px solid #eee;
+  padding: 0px 30px 25px 30px;
+  margin-left: -30px;
+  margin-right: -30px;
+}
+
+.login .content .forget-form .form-actions {
+  border: 0;
+  margin-bottom: 0;
+  padding-bottom: 20px;
+}  
+
+.login .content .register-form .form-actions {
+  border: 0;
+  margin-bottom: 0;
+  padding-bottom: 0px;
+}
+
+.login .content .form-actions .checkbox {
+  margin-top: 8px;
+  display: inline-block;
+}
+
+.login .content .form-actions .btn {
+  margin-top: 1px;
+}
+
+.login .content .forget-password {
+  margin-top: 25px;
+}
+
+.login .content .create-account {
+  border-top: 1px dotted #eee;
+  padding-top: 10px;
+  margin-top: 15px;
+}
+
+.login .content .create-account a {
+  display: inline-block;
+  margin-top: 5px;
+}
+
+.login .copyright {
+  text-align: center;
+  width: 250px;
+  margin: 0 auto; 
+  padding: 10px 10px 0 10px;
+  color: #999;
+  font-size: 11px;
+}
+.login .copyright a{
+    color: #999;
+}
+
+
+.login-1{
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    background: url(/member/statics/images/1.jpg) no-repeat;
+   
+}

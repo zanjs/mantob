@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+	<head>
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+	    <meta charset="utf-8">
+	    <title>{$meta_title}</title>
+    	<meta name="keywords" content="{$meta_keywords}" />
+    	<meta name="description" content="{$meta_description}" />
+	    <link rel="stylesheet" type="text/css" href="{HOME_MOBILE_PATH}dist/reset.css" />
+	    <link rel="stylesheet" type="text/css" href="{HOME_MOBILE_PATH}dist/style.css" />
+	    <script type="text/javascript">var HOME_MOBILE_PATH = '{HOME_MOBILE_PATH}';</script>
+	</head>
+	<body>
+		<div class="pages" style="background:#FFF;">
+			<section class="widget_page">
+            	<!--顶部导航-->
+				<div class="ntop">
+					<h3>
+                    	<a class="btn_back" href="javascript:history.back(-1)"></a><span class="top-site">{SITE_NAME}</span>
+                    </h3>
+                    <a class="ui-menu-trigger js-menubtn-top" href="{SITE_URL}index.php?c=sitemap"></a>
+				</div>
+
+				<div id="wrap" style="margin-top:10px">
+                    <div id="nav2_wrap">
+                        <div id="nav2">
+                            <ul>
+                                {loop $related $t}
+                                <li {if $id==$t.id}class="ui-state-active"{/if}><a href="{dr_mobile_page_url(APP_DIR, $t.id)}">{$t.name}</a></li>
+                                {/loop}
+                            </ul>
+                            <span class="bar"></span>
+                        </div>
+                        <a id="arrow"><span>&gt;</span></a>
+                    </div>
+                </div>
+                
+       			<div class="article">
+                    <div class="info">
+                        <h1>{$title}</h1>
+                    </div>
+                    <div class="text">
+                       {$content}
+                    </div>
+                </div>
+
+                
+                {template "footer.html"}
+			</section>
+		</div>
+
+        <link rel="stylesheet" type="text/css" href="{HOME_MOBILE_PATH}assets/widget/navigator/navigator.css" />
+        <link rel="stylesheet" type="text/css" href="{HOME_MOBILE_PATH}assets/widget/navigator/navigator.default.css" /><!--皮肤文件，若不使用该皮肤，可以不加载-->
+        <script type="text/javascript" src="{HOME_MOBILE_PATH}dist/zepto.js"></script>
+        <script type="text/javascript" src="{HOME_MOBILE_PATH}src/core/gmu.js"></script>
+        <script type="text/javascript" src="{HOME_MOBILE_PATH}src/core/event.js"></script>
+        <script type="text/javascript" src="{HOME_MOBILE_PATH}src/core/widget.js"></script>
+        
+		<script type="text/javascript" src="{HOME_MOBILE_PATH}src/extend/touch.js"></script>
+        <script type="text/javascript" src="{HOME_MOBILE_PATH}src/extend/iscroll.js"></script>
+        <script type="text/javascript" src="{HOME_MOBILE_PATH}src/extend/highlight.js"></script>
+        <script type="text/javascript" src="{HOME_MOBILE_PATH}src/extend/parseTpl.js"></script>
+        <script type="text/javascript" src="{HOME_MOBILE_PATH}src/widget/navigator/navigator.js"></script>
+        <script type="text/javascript" src="{HOME_MOBILE_PATH}src/widget/navigator/scrolltonext.js"></script>
+        <script type="text/javascript" src="{HOME_MOBILE_PATH}src/widget/navigator/scrollable.js"></script>
+        <!--组件依赖js end-->
+        <script type="text/javascript">
+            (function () {
+				$('#nav').navigator();
+				var bar = $('#nav2 span.bar'),
+					left = $('#nav2 ul').offset().left;
+				$('#nav2').navigator({
+					select: function( e, index, li ){
+						bar.css({
+							left: li.offsetLeft - left,
+							width: li.childNodes[0].offsetWidth
+						});
+					},
+					ready: function() {
+						bar.appendTo($('#nav2').find('.ui-scroller'));
+					}
+				});
+		
+				$('#arrow').on('click', function(){
+					$('#nav2').iScroll( 'scrollTo', 100, 0, 400, true );
+				});
+
+            })();
+        </script>
+	</body>
+</html>

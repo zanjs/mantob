@@ -1,0 +1,66 @@
+{template "header.html"}
+<script type="text/javascript">
+{if IS_POST}
+art.dialog.tips("{lang('000')}", 3, 1);
+{/if}
+function dr_add_list() {
+	var v = $("#dr_list").val();
+	$("#dr_list").val(v+","+$("#dr_option").val());
+}
+</script>
+<form action="" method="post" name="myform" id="myform">
+<div class="subnav">
+	<div class="content-menu ib-a blue line-x">
+		{$menu}
+	</div>
+    <div class="bk10"></div>
+    <fieldset>
+        <legend>常用快递选择</legend>
+        <table width="100%" class="table_form">
+            <tr>
+                <th width="200">支持快递：</th> 
+                <td>
+                <select id="dr_option">
+                {loop $expresses $i $t}
+                {if !@in_array($i, $list)}<option value="{$i}">{$t}</option>{/if}
+                {/loop}
+                </select>
+                <input value="{lang('add')}" onclick="dr_add_list()" type="button" name="button" class="button" />
+                <a href="http://www.ickd.cn/api/list.php" target="_blank" style="color:#00F">支持快递代码</a>
+                </td>
+            </tr>
+            <tr class="dr_border_none">
+                <th>常用快递：</th>
+                <td><input type="text" id="dr_list" style="width:90%;" value="{$data.list}" name="data[list]" class="input-text" /></td>
+            </tr>
+        </table>
+    </fieldset>
+	<div class="bk10"></div>
+    <fieldset>
+        <legend>API申请</legend>
+        <table width="100%" class="table_form">
+            <tr>
+                <th width="200">API Id：</th> 
+                <td>
+                <input type="text" size="20" value="{$data.id}" name="data[id]" class="input-text" />
+                <a href="http://api.ickd.cn/users/" target="_blank" style="color:#00F">快递查询API申请方式</a>
+                </td>
+            </tr>
+            <tr class="dr_border_none">
+                <th>API Sceret：</th>
+                <td><input type="text" size="40" value="{$data.secret}" name="data[secret]" class="input-text" /></td>
+            </tr>
+        </table>
+    </fieldset>
+	<div class="bk10"></div>
+    <fieldset style="border:none;">
+        <table width="100%" class="table_form">
+		<tr class="dr_border_none">
+			<th width="200"> </th>
+			<td><input value="{lang('save')}" type="submit" name="submit" class="button" /></td>
+		</tr>
+        </table>
+    </fieldset>
+</div>
+</form>
+{template "footer.html"}

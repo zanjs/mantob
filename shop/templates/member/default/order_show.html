@@ -1,0 +1,221 @@
+{template "header.html"}
+<script type="text/javascript">
+$(function(){
+	$(".dr_order_item tr:last").attr("class", "dr_border_none");
+	$("#dtab > a").click(function(){
+		var id = $(this).attr("i");
+		$("#dtab > a").attr("class", "");
+		$(this).attr("class", "cur");
+		$(".dtab-hide").hide();
+		$("#dtab-"+id).show();
+		if (id == "2") {
+			// 查询快递
+			$.get("{dr_member_url(APP_DIR.'/order/kd', array('id' => $data.sendnote.id, 'sn' => $data.sendnote.text))}", function(data){
+				$("#dr_kd").html(data);
+			});
+		}
+	});
+});
+</script>
+<style>
+.dr_order_item td {
+    line-height: normal !important;
+}
+</style>
+<div class="zzw content clearfix">
+	{template "navigator.html"}
+    <div class="article">
+        <div class="section">
+            <div class="title"><strong>订单状态</strong></div>
+            <div class="main dr_table">
+				<table width="100%" class="table_form" style="margin-bottom:0">
+                <tr>
+                    <th width="100">订单编号： </th>
+                    <td>&nbsp;
+                    {$data.id}</td>
+                </tr>
+                <tr>
+                    <th>下单时间： </th>
+                    <td>&nbsp;
+                    {dr_date($data.inputtime, NULL, 'red')}</td>
+                </tr>
+                {if $data.successtime}
+                <tr>
+                  <th>成交时间：</th>
+                  <td>&nbsp;
+                  {dr_date($data.successtime, NULL, 'red')}</td>
+                </tr>
+                {/if}
+                <tr class="dr_border_none">
+                    <th>订单状态： </th>
+                    <td>&nbsp;
+                    {if $data.status==0}<font color="#FF0000">交易关闭</font>
+                    {else if $data.status==1}<font color="#0000FF">等待付款</font>
+                        &nbsp;<a href="{dr_url(APP_DIR.'/order/pay', array('id'=>$id))}" style="color:green">立即付款</a>
+                        &nbsp;<a href="javascript:;" onclick="dr_confirm_url('<font color=red><b>您确定要关闭此订单吗吗？</b></font>', '{dr_url(APP_DIR.'/order/close', array('id' => $id))}')" style="color:red">关闭订单</a>
+                    {else if $data.status==2}<font color="#FF9933">等待发货</font>
+                        {if $data.ptid==3}
+                        &nbsp;<a href="javascript:;" onclick="dr_confirm_url('<font color=red><b>您确定要关闭此订单吗吗？</b></font>', '{dr_url(APP_DIR.'/order/close', array('id' => $id))}')" style="color:red">关闭订单</a>
+                        {/if}
+                    {else if $data.status==3}
+                    {if $data.ptid==3}
+                    <font color="#FF0000">已发货</font>
+                    {else}
+                    <a href="javascript:;" onclick="dr_confirm_url('<b><font color=red>您确认要收货吗？</font></b>', '{dr_url(APP_DIR.'/order/confirm', array('id' => $id))}')"><font color="#FF0000">确认收货</font></a>
+                    {/if}
+                    {else if $data.status==4}<font color="#009900">交易成功</font>
+                    {/if}
+                    </td>
+                </tr>
+                </table>
+            </div>
+        </div>
+        <div class="section_title" id="dtab">
+            <a class="cur" href="javascript:;" i="1">付款情况</a>
+            {if $data.sendnote}
+            <a href="javascript:;" i="2">订单跟踪</a>
+            {/if}
+        </div>
+        <div class="section_main dtab-hide main dr_table" id="dtab-1">
+            <table width="100%" class="table_form" style="margin-bottom:0">
+                <tr>
+                    <th width="100">付款方式： </th>
+                    <td>&nbsp;
+                    <font color="{$paytype[$data.ptid]['color']}"><b>{$paytype[$data.ptid]['name']}</b></font></td>
+                </tr>
+                <tr>
+                    <th>订单价格： </th>
+                    <td>&nbsp;
+                    <span class="dr_pirce">￥{$data.price}元</span> {if $data.freight >0}（含邮费￥{$data.freight}元）{/if}</td>
+                </tr>
+                <tr class="dr_border_none">
+                    <th>已使用{SITE_SCORE}： </th>
+                    <td>&nbsp;&nbsp;
+                    <span class="dr_pirce">{$data.score}</span></td>
+                </tr>
+        	</table>
+        </div>
+        {if $data.sendnote}
+        <div class="section_main dtab-hide main dr_table" id="dtab-2" style="display:none">
+            <table width="100%" class="table_form" style="margin-bottom:0">
+                <tr>
+                    <th width="100">运送方式： </th>
+                    <td>&nbsp;
+                    {$data.sendnote.name}
+                    </td>
+                </tr>
+                {if $data.sendnote.id == 'null'}
+                <tr class="dr_border_none">
+                    <th>收货说明： </th>
+                    <td>&nbsp;
+                    {$data.sendnote.text}</td>
+                </tr>
+                {else}
+                <tr>
+                    <th>运单编号： </th>
+                    <td>&nbsp;
+                    {$data.sendnote.text}</td>
+                </tr>
+                <tr class="dr_border_none">
+                    <th valign="top">物流动态： </th>
+                    <td id="dr_kd">
+                    &nbsp;
+                    查询中...
+                    </td>
+                </tr>
+                {/if}
+        	</table>
+        </div>
+        {/if}
+        <div class="bk10"></div>   
+        <div class="section">
+            <div class="title"><strong>商品清单</strong></div>
+            <div class="main dr_table">
+                <table style="table-layout:fixed;margin-bottom:0;">
+				<thead>
+					<tr>
+						<th width="70" class="algin_l"></th>
+						<th class="algin_l" style="padding-left:13px;">商品</th>
+						<th style="width:80px;padding:0;" class="algin_c">单价</th>
+						<th style="width:80px;padding:0;" class="algin_c">数量</th>
+						<th style="width:80px;padding:0;" class="algin_c">共计</th>
+					</tr>
+				</thead>
+                <tr>
+                <td colspan="5" style="padding:0;border:none">
+                    <table border="0" cellspacing="0" cellpadding="0" class="dr_order_item">
+                    {loop $data.items $i $item}
+                      <tr>
+                        <td width="70"><a href="{$item.url}" target="_blank" class="dr_order_item_thumb"><img src="{dr_thumb($item.thumb, 70, 60)}" width="70" /></a></td>
+                        <td style="padding-right:5px;"><a href="{$item.url}" target="_blank">{$item.title}</a><div style="padding-top:3px; color:#999">{$item.format}</div></td>
+                        <td style="width:80px;padding:0;" class="algin_c dr_price">
+                        {if $item.discount}
+                        <del>{number_format($item.price, 2)}</del><br>
+                        {number_format($item.discount, 2)}
+                        {else}
+                        {number_format($item.price, 2)}
+                        {/if}
+                        </td>
+                        <td style="width:80px;padding:0;" class="algin_c">{$item.num}</td>
+                        <td style="width:80px;padding:0;" class="algin_c dr_price">{number_format($item.total, 2)}</td>
+                      </tr>
+                    {/loop}
+                    </table>
+                </td>
+                </tr>
+				</table>
+            </div>
+        </div>
+        {if $data.name && $data.phone}
+        <div class="section">
+            <div class="title"><strong>收货信息</strong></div>
+            <div class="main dr_table">
+				<table width="100%" class="table_form" style="margin-bottom:0">
+                <tr>
+                    <th width="100">收货人： </th>
+                    <td>&nbsp;
+                    {$data.name}</td>
+                </tr>
+                <tr>
+                    <th>所在地： </th>
+                    <td>&nbsp;
+                    {dr_linkagepos('address', $data.city, ' > ', '')}</td>
+                </tr>
+                <tr>
+                    <th>详细地址： </th>
+                    <td>&nbsp;
+                    {$data.address}</td>
+                </tr>
+                <tr>
+                    <th>邮政编码： </th>
+                    <td>&nbsp;
+                    {$data.zipcode}</td>
+                </tr>
+                {if $data.gbook}
+                <tr>
+                    <th>联系电话： </th>
+                    <td>&nbsp;
+                    {$data.phone}
+                    </td>
+                </tr>
+                <tr class="dr_border_none">
+                    <th>买家留言： </th>
+                    <td>&nbsp;
+                    {$data.gbook}
+                    </td>
+                </tr>
+                {else}
+                <tr class="dr_border_none">
+                    <th>联系电话： </th>
+                    <td>&nbsp;
+                    {$data.phone}
+                    </td>
+                </tr>
+                {/if}
+                </table>
+            </div>
+        </div>
+        {/if}
+    </div>
+</div>
+{template "footer.html"}

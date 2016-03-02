@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+	<head>
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+	    <meta charset="utf-8">
+	    <title>{$meta_name}</title>
+    	<meta name="keywords" content="{$meta_keywords}" />
+    	<meta name="description" content="{$meta_description}" />
+	    <link rel="stylesheet" type="text/css" href="{HOME_MOBILE_PATH}dist/reset.css" />
+	    <link rel="stylesheet" type="text/css" href="{HOME_MOBILE_PATH}dist/style.css" />
+	    <script type="text/javascript">var HOME_MOBILE_PATH = '{HOME_MOBILE_PATH}';</script>
+	</head>
+	<body>
+		<div class="pages bg">
+			<section class="widget_page">
+            	<!--顶部导航-->
+				<div>
+					<h3>
+                    	<a href="{SITE_URL}" class="top-gohomepage"></a><span class="top-site">{SITE_NAME}</span>
+                    </h3>
+                    <a class="ui-menu-trigger js-menubtn-top" href="{SITE_URL}index.php?c=sitemap"></a>
+				</div>
+                
+                <div class="ucenter">
+                    <form method="post" action="">
+                    <input name="back" type="hidden" value="{$back_url}" />
+                    {if $result_error}
+                    <div class="p">
+                        <div class="alert alert-danger">
+                            {$result_error}
+                        </div>
+                    </div>
+                    {/if}
+                    <p>
+                        <input class="input" type="text" placeholder="会员登录账号" autofocus name="data[username]" />
+                    </p>
+                    <p>
+                        <input class="input" type="password" placeholder="会员登录密码" name="data[password]" />
+                    </p>
+                    {if $code}
+                    <p>
+                        <input class="input" type="text" id="code" placeholder="验证码" name="code" style="float:left;width:60%;" />
+                        <img align="absmiddle" style="cursor:pointer;float:left；width:20%;" onclick="this.src='{dr_member_url('api/captcha', array('width' => 90, 'height' => 32))}&'+Math.random();" src="{dr_member_url('api/captcha', array('width' => 90, 'height' => 32))}" />
+                    </p>
+                    {/if}
+                    <p class="mbutton">
+                        <button type="submit" class="button">
+                             登录
+                        </button>
+                        &nbsp;&nbsp;<a href="{dr_member_url('register/index')}">注册</a>
+                    </p>
+                    </form>
+                </div>
+                {template "footer.html", "/"}
+			</section>
+		</div>
+	</body>
+</html>

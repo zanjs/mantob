@@ -1,0 +1,47 @@
+{template header.html}
+
+<div class="subnav">
+	<div class="content-menu ib-a blue line-x">
+		{$menu}<span>|</span><a href="http://www.mantob.net" target="_blank"><em>技术支持</em></a>
+	</div>
+	<div class="bk10"></div>
+	<div class="explain-col">
+		<font color="gray">网站搬家指将网站数据从本地或者其他站点迁移到当前站点</font>
+	</div>
+	<div class="bk10"></div>
+	<div class="table-list">
+		<form action="" method="post" name="myform" id="myform">
+        <input name="todo" type="hidden" value="1" />
+		<table width="100%" class="table_form">
+		<tr>
+			<th width="100">第四步、</th>
+			<td>{if !$ok}数据库信息验证成功{else}<font color="#FF0000">{$ok}</font>{/if}</td>
+		</tr>
+        {if !$ok}
+        <tr>
+			<th>第五步、</th>
+			<td>为站点指定域名</td>
+		</tr>
+        {loop $site $id $t}
+        <tr>
+			<th></th>
+			<td>
+            {$t.name}：<input class="input-text" type="text" name="site[{$id}]" value="{$t.domain}"  size="30" />
+            </td>
+		</tr>
+        {/loop}
+        <tr>
+			<th>第六步、</th>
+			<td><input value="生成配置" type="submit" name="submit" class="button" /></td>
+		</tr>
+        {else}
+        <tr>
+			<th>第五步、</th>
+			<td><input value="返回" type="button" onclick="window.location.href='{$back}'" name="button" class="button" /></td>
+		</tr>
+        {/if}
+		</table>
+		</form>
+	</div>
+</div>
+{template footer.html}

@@ -1,0 +1,27 @@
+{template "header.html","/"}
+<body>
+{template "top.html"}
+<!-- 面包 -->
+<div class="zzw mauto zMianBao">
+    <h2 class="mianbaoH">
+      <a href="">首页</a>&gt;
+      <a href="">厨房</a>
+    </h2>
+</div>
+<!-- 面包 end-->
+<!-- Product recommendation -->
+<!-- list -->
+<div class="zzw mauto ProductListBox">
+<!-- 1 -->
+{list action=module catid=$catid order=updatetime page=1}
+{template "list_data.html"}
+{/list}
+<!-- 1 end-->
+
+</div>
+<!-- list end-->
+<!-- Product recommendation end-->
+{template "footer.html"}
+
+</body>
+</html>

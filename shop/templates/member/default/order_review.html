@@ -1,0 +1,99 @@
+{template "header.html"}
+<script type="text/javascript">
+$(function() {
+	{if $error}
+	art.dialog.tips('<font color=red>{$error}</font>', 3);
+	{/if}
+	$('.dr_value_img').click(function(){
+		var id = $(this).attr('rid');
+		var vid = $(this).attr('vid');
+		var iid = $(this).attr('iid');
+		$('#dr_value_'+iid+'_'+id).val(vid);
+		$(this).nextUntil().each(function(index) {
+            $(this).attr('src', '{MEMBER_THEME_PATH}images/x0.png');
+        });
+		$(this).attr('src', '{MEMBER_THEME_PATH}images/x1.png');
+		$(this).prevAll().each(function(index) {
+            $(this).attr('src', '{MEMBER_THEME_PATH}images/x1.png');
+        });
+	});
+});
+</script>
+<div class="content clearfix">
+	{template "navigator.html"}
+    <div class="article">
+	
+        <div class="section">
+            <div class="title"><strong>商品评价</strong></div>
+            <div class="main dr_table">
+				<form action="" method="post">
+                <table width="100%" class="table_form">
+                {loop $data $i $t}
+                  <tr class="dr_border_none">
+                    <td colspan="2" valign="top" style="padding-top:20px; padding-bottom:10px;">
+                    <a href="{$t.url}" target="_blank"><b>{$t.title}</b></a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="100" valign="top" style="padding-top:40px; text-align:center;">
+                    <a href="{$t.url}" target="_blank" class="dr_order_item_thumb"><img src="{dr_thumb($t.thumb, 70, 60)}" width="70" /></a>
+                    <br>{$t.format}
+                    </td>
+                    <td>
+                        <table width="100%" class="table_form">
+                        {if $t.review}
+                        <tr class="dr_border_none">
+                          <th>评论总分：</th>
+                          <td>{$t.avgsort}&nbsp;分</td>
+                        </tr>
+                        {loop $review $id $name}
+                        {if $name}
+                         <tr class="dr_border_none">
+                          <th>{$name}：</th>
+                          <td>{$t['value'][$id]}&nbsp;分
+                          </td>
+                        </tr>
+                        {/if}
+                        {/loop}
+                        {else}
+                        {loop $review $id $name}
+                        {if $name}
+                        <tr class="dr_border_none">
+                          <th>{$name}：</th>
+                          <td style=" padding-bottom:2px;">
+                          &nbsp;<img src="{MEMBER_THEME_PATH}images/x0.png" class="dr_value_img" align="absmiddle" style="cursor:pointer" rid="{$id}" iid="{$i}" vid="1" />
+                          &nbsp;<img src="{MEMBER_THEME_PATH}images/x0.png" class="dr_value_img" align="absmiddle" style="cursor:pointer" rid="{$id}" iid="{$i}" vid="2" />
+                          &nbsp;<img src="{MEMBER_THEME_PATH}images/x0.png" class="dr_value_img" align="absmiddle" style="cursor:pointer" rid="{$id}" iid="{$i}" vid="3" />
+                          &nbsp;<img src="{MEMBER_THEME_PATH}images/x0.png" class="dr_value_img" align="absmiddle" style="cursor:pointer" rid="{$id}" iid="{$i}" vid="4" />
+                          &nbsp;<img src="{MEMBER_THEME_PATH}images/x0.png" class="dr_value_img" align="absmiddle" style="cursor:pointer" rid="{$id}" iid="{$i}" vid="5" />
+                          <input name="data[{$i}][value][{$id}]" id="dr_value_{$i}_{$id}" type="hidden" value="" />
+                          </td>
+                        </tr>
+                        {/if}
+                        {/loop}
+                        {/if}
+                        <tr class="dr_border_none">
+                          <th width="120">对商品评价内容：</th>
+                          <td>{if $t.content}{$t.content}{else}<textarea name="data[{$i}][content]" style="width:330px; height:100px;margin-top:10px;"></textarea>{/if}</td>
+                        </tr>
+                        </table>
+                    </td>
+                </tr>
+                {/loop}
+                {if !$data[0]['review']}
+                <tr>
+                  <th colspan="2" style="border:none; text-align: center; padding-left:300px; padding-top:20px;">
+                  <div class="mbutton">
+                    <button class="blue_button" type="submit" value="">评价</button>
+                  </div>
+                  </th>
+                </tr>
+                {/if}
+                </table>
+           		</form>
+            </div>
+        </div>
+        
+    </div>
+</div>
+{template "footer.html"}

@@ -1,0 +1,103 @@
+{template "header.html"}
+<style type="text/css">
+html { _overflow-y:scroll;}
+* { font-size:13px; }
+tr { height:23px;}
+.td { height:20px;overflow:hidden}
+.box .box-title {
+    border-bottom: 1px solid #DDDDDD;
+    padding: 7px 0 7px 10px;
+}
+.box .box-title h3 {
+    color: #444444;
+    float: left;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 24px;
+    margin: 3px 0;
+}
+.box .content {
+    background: none repeat scroll 0 0 #FFFFFF;
+    padding: 20px;
+}
+.box .box-title h3 i {
+	font-size:18px;
+	margin-right:10px;
+}
+.mleft {
+	width:120px;
+	text-align:right;
+}
+
+</style>
+<script type="text/javascript">
+$(function(){
+    $("#dr_result").html("");
+    $("#dr_module").html('<tr><td align="left"><font color="green"><img width="16" src="/mantob/statics/images/ok.png">&nbsp;&nbsp;正在开始安装模块...</font></td></tr>');
+    {loop $step $id $name}
+    $.ajax({
+        type: "GET",
+        url: "{dr_url('check/todo', array('step'=>$id))}&"+Math.random(),
+        contentType: "application/json; charset=utf-8",
+        dataType: "text",
+        success: function (data) {
+            $("#dr_result").append(data);
+        }
+    });
+    {/loop}
+    {loop $module $dir $name}
+    $.ajax({
+        type: "GET",
+        url: "{dr_url('module/install', array('dir' => $dir, 'admin' => 1))}&"+Math.random(),
+        contentType: "application/json; charset=utf-8",
+        dataType: "text",
+        success: function (data) {
+            if (data == 'ok') {
+                $("#dr_module").append('<tr><td align="left"><font color="green"><img width="16" src="/mantob/statics/images/ok.png">&nbsp;&nbsp;模块【{$name}】安装成功</font></td></tr>');
+            } else {
+                $("#dr_module").append('<tr><td align="left"><font color="red"><img width="16" src="/mantob/statics/images/b_drop.png">&nbsp;&nbsp;模块【{$name}】已被安装</font></td></tr>');
+            }
+        }
+    });
+    {/loop}
+    $.ajax({
+        type: "GET",
+        url: "{dr_url('linkage/import', array('admin'=>1))}&"+Math.random(),
+        contentType: "application/json; charset=utf-8",
+        dataType: "text",
+        success: function (data) {
+
+        }
+    });
+    art.dialog.notice({ title: '系统提醒', content: "<p style='padding:10px 10px 0px 10px;font-size:14px;'><a href='{dr_url("home/cache")}' style=\"color:red\" target='right'><b>{lang('html-543')}</b></a></p><p style='padding:5px 10px 20px 10px;font-size:14px;'><a href='http://www.mantob.com/help/list-341.html' style=\"color:blue\" target='_blank'><b>{lang('html-627')}</b></a></p><p style='padding:5px 10px 20px 10px;font-size:14px;'><font color='red'><b>为了您系统的稳定性和安全性，请修复体检中的红色提示</b></font></p>",
+        time: 100
+    });
+});
+</script>
+<link rel="stylesheet" href="{SITE_PATH}mantob/statics/css/font-awesome/css/font-awesome.css" />
+<div id="main_frameid" class="pad-10" style="_margin-right:-12px;_width:98.9%;">
+    <div class="box">
+		<div class="box-title">
+			<h3><i class="icon-cloud"></i> 安装模块</h3>
+			<div class="clear"></div>
+		</div>
+        <div class="table-list">
+            <table width="100%" id="dr_module">
+                
+            </table>
+        </div>
+    </div>
+    <div class="bk10"></div>
+    <div class="box">
+		<div class="box-title">
+			<h3><i class="icon-zoom-out"></i>系统体检</h3>
+			<div class="clear"></div>
+		</div>
+        <div class="table-list">
+            <table width="100%" id="dr_result">
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

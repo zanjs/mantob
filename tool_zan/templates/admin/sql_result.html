@@ -1,0 +1,19 @@
+{template header.html}
+<form action="" method="post" name="myform" id="myform">
+<div class="subnav">
+	<div class="content-menu ib-a blue line-x">
+		{$menu}<span>|</span><a href="http://www.mantob.net" target="_blank"><em>技术支持</em></a>
+	</div>
+	<div class="bk10"></div>
+	<div class="explain-col">
+		<font color="gray">{$sql}</font>
+	</div>
+	<div class="bk10"></div>
+	<div class="table-list">
+		<pre>
+		{php print_r($result);}
+		</pre>
+	</div>
+</div>
+</form>
+{template footer.html}

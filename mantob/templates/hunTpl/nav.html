@@ -1,0 +1,45 @@
+<div class="head">
+	<div class="header">
+		<div class="logo">
+			<a href="{SITE_URL}" title="缘始婚庆礼仪策划">
+				<img src="{HOME_THEME_PATH}images/logo.png"
+				alt="缘始婚庆礼仪策划" width="200" height="100">
+			</a>
+		</div>
+		<div class="menu">
+			<div id="mainnav" class="menunav">
+				<ul id="mainnav" class="mainnav">
+				{list action=navigator type=0 pid=0}
+					<li id="menu-item-{$key}" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-ancestor current-menu-parent current_page_parent current_page_ancestor menu-item-has-children menu-item-{$key}">
+						<a href="">
+							<span>
+								{$t.name}
+							</span>
+						</a>
+						{if $t.child}
+						<ul class="sub-menu">
+							{list action=navigator type=0 pid=$t.id return=t2}
+							{if $key_t2 < 1}
+							<li  class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-233">
+								<a href="{$t.url}" {if $t2.target}target="_blank"{/if}>
+									{$t2.name}
+								</a>
+							</li>							
+							{else}
+							<li  class="menu-item menu-item-type-post_type menu-item-object-page menu-item-238">
+								<a href="{$t2.url}" {if $t2.target}target="_blank"{/if}>
+									{$t2.name}
+								</a>
+							</li>
+							{/if}
+							{/list}
+						</ul>
+						{/if}
+					</li>
+					{/list}
+					
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>

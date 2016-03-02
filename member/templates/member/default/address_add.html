@@ -1,0 +1,55 @@
+{template header.html}
+<script type="text/javascript">
+$(function(){
+	{if $result_error}
+	dr_tips("{$result_error}", 3);
+	{/if}
+});
+</script>
+<div class="content clearfix">
+	{template navigator.html}
+    <div class="section_wp">
+        <div class="section_title">
+        	<a href="javascript:;" class="cur">{$meta_name}</a>
+        </div>
+        <div id="message_id" class="section_main">
+            <form method="post" action="">
+            <table width="100%" class="table_form">
+            <tr>
+                <th width="160"><font color="red">*</font>&nbsp;城市： </th>
+                <td>{dr_field_input('city', 'Linkage', array('option' => array('linkage' => 'address'),'validate' => array('required' => 1 )), $data['city'])}</td>
+            </tr>
+            <tr>
+                <th><font color="#FF0000">*</font>&nbsp;姓名：</th>
+                <td><input type="text" name="data[name]" value="{$data.name}" required="required" style="width:150px" class="input_text" /></td>
+            </tr>
+            <tr>
+            	<th><font color="#FF0000">*</font>&nbsp;电话：</th>
+                <td><input type="text" name="data[phone]" value="{$data.phone}" required="required" style="width:200px" class="input_text" /></td>
+            </tr>
+            <tr>
+            	<th><font color="#FF0000">*</font>&nbsp;邮编：</th>
+                <td><input type="text" name="data[zipcode]" value="{$data.zipcode}" required="required" style="width:200px" class="input_text" /></td>
+            </tr>
+            <tr>
+            	<th><font color="#FF0000">*</font>&nbsp;地址：</th>
+                <td><input type="text" name="data[address]" value="{$data.address}" required="required" style="width:350px" class="input_text" /></td>
+            </tr>
+            <tr>
+            	<th><font color="#FF0000">*</font>&nbsp;设为默认：</th>
+                <td><select name="data[default]">
+                    <option {if !$data.default}selected="selected"{/if} value="0">否</option>
+                    <option {if $data.default}selected="selected"{/if} value="1">是</option>
+                </select></td>
+            </tr>
+            <tr>
+                <th style="border-bottom:none">&nbsp;</th>
+                <td style="border-bottom:none;padding-top: 20px;"><div class="mbutton"><button value="" type="submit" class="blue_button">保存</button></div></td>
+            </tr>
+            </table>
+            </form>
+        </div>
+    </div>
+</div>
+
+{template footer.html}

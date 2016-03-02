@@ -1,0 +1,22 @@
+{loop $list $t}
+<tr id="dr_row_{$t.id}">
+	<td class="algin_r"><input type="checkbox" value="{$t.id}" class="dr_select" name="ids[]"></td>
+	<td class="algin_l"><div class="dr_title"><a href="{$t.url}" title="{$t.title}" target="_blank">{dr_keyword_highlight($t.title, $kw)}</a></div></td>
+	<td class="algin_c"><a href="{CATEGORY.$t[catid].url}" target="_blank">{CATEGORY.$t[catid].name}</a></td>
+	<td class="algin_l">{dr_date($t.updatetime, '', 'red')}</td>
+	<td class="algin_l">
+    {if $extend}
+    <a href="{dr_member_url(APP_DIR.'/extend/index',array('cid'=>$t.id))}" style="color:#00F">{lang('mod-29')}</a>&nbsp;
+    {/if}
+	{loop $form $f}
+	<a href="{$f.url}&cid={$t.id}">{$f.name}</a>&nbsp;
+	{/loop}
+    {if $module_rule[$t['catid']]['edit']}
+    <a href="{dr_member_url(APP_DIR.'/home/edit', array('id'=>$t.id))}">修改</a>&nbsp;
+    {/if}
+    {if $module_rule[$t['catid']]['del']}
+    <a href="javascript:;" onclick="dr_delete('{$t.catid}', '{$t.id}')">删除</a>&nbsp;
+    {/if}
+    </td>
+</tr>
+{/loop}

@@ -1,0 +1,104 @@
+{template "header.html"}
+<script type="text/javascript">
+{if IS_POST}
+art.dialog.tips("{lang('000')}", 3, 1);
+{/if}
+</script>
+<form action="" method="post" name="myform" id="myform">
+<div class="subnav">
+	<div class="content-menu ib-a blue line-x">
+		{$menu}
+	</div>
+    <div class="bk10"></div>
+    <fieldset>
+        <legend>基本配置</legend>
+        <table width="100%" class="table_form">
+            <tr>
+                <th width="200">更新库存：</th> 
+                <td>
+					<input type="radio" {if $data.quantity}checked=""{/if} value="1" name="data[quantity]">&nbsp;<label>开启</label>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+					<input type="radio" {if !$data.quantity}checked=""{/if} value="0" name="data[quantity]">&nbsp;<label>关闭</label>&nbsp;&nbsp;
+                    <div class="onShow">购买成功之后会减少商品的库存数量</div>
+				</td>
+            </tr>
+            <tr>
+                <th>购买数量验证：</th> 
+                <td>
+					<input type="radio" {if $data.num}checked=""{/if} value="1" name="data[num]">&nbsp;<label>开启</label>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+					<input type="radio" {if !$data.num}checked=""{/if} value="0" name="data[num]">&nbsp;<label>关闭</label>&nbsp;&nbsp;
+                    <div class="onShow">开启后会验证购买数量，库存不足时提示用户不能购买</div>
+				</td>
+            </tr>
+            <tr>
+                <th>运送方式：</th> 
+                <td>
+					<input type="radio" {if $data.freight}checked=""{/if} value="1" name="data[freight]">&nbsp;<label>开启</label>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+					<input type="radio" {if !$data.freight}checked=""{/if} value="0" name="data[freight]">&nbsp;<label>关闭</label>&nbsp;&nbsp;
+                    <div class="onShow">开启后会必须填写送货地址和启用快递发货机制</div>
+				</td>
+            </tr>
+            <tr>
+                <th>订单验证码：</th>
+                <td>
+                    <input type="radio" {if $data.code}checked=""{/if} value="1" name="data[code]">&nbsp;<label>开启</label>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="radio" {if !$data.code}checked=""{/if} value="0" name="data[code]">&nbsp;<label>关闭</label>&nbsp;&nbsp;
+                    <div class="onShow">支付订单时开启验证码机制</div>
+                </td>
+            </tr>
+            <tr>
+                <th>订单有效期：</th>
+                <td>
+                    <input type="text" style="width: 94px" value="{intval($data.day)}" name="data[day]" class="input-text" />
+                    <div class="onShow">已天为单位，0为不过期，过期之后自动关闭订单</div>
+                </td>
+            </tr>
+            <tr class="dr_border_none">
+                <th>{lang('cat-24')}：</th> 
+                <td>
+                <select name="data[status]">
+                    <option value="0" {if !$data.status}selected="selected"{/if}>{lang('cat-25')}</option>
+                    <option value="-1" {if $data.status==-1}selected="selected"{/if}>{lang('cat-26')}</option>
+                    <option value="1" {if $data.status==1}selected="selected"{/if}>{lang('cat-27')}</option>
+                </select>
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+    <div class="bk10"></div>
+    <fieldset>
+        <legend>评价配置</legend>
+        <table width="100%" class="table_form">
+            <tr>
+                <th width="200">开启评价：</th> 
+                <td>
+					<input type="radio" {if $data.isreview}checked=""{/if} value="1" name="data[isreview]">&nbsp;<label>开启</label>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+					<input type="radio" {if !$data.isreview}checked=""{/if} value="0" name="data[isreview]">&nbsp;<label>关闭</label>
+				</td>
+            </tr>
+            <tr class="dr_border_none">
+                <th>评价选项：</th> 
+                <td>
+					<textarea name="data[review]" style="width:330px; height:100px;margin-top:10px;">{$data.review}</textarea>
+                    <br>
+                    <font color="#999999" id="dr_names_tips">格式: 选项名称 [回车换行]</font>
+				</td>
+            </tr>
+        </table>
+    </fieldset>
+	<div class="bk10"></div>
+    <fieldset style="border:none;">
+        <table width="100%" class="table_form">
+		<tr class="dr_border_none">
+			<th width="200"> </th>
+			<td><input value="{lang('save')}" type="submit" name="submit" class="button" /></td>
+		</tr>
+        </table>
+    </fieldset>
+</div>
+</form>
+{template "footer.html"}

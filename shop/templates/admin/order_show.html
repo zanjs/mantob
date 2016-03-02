@@ -1,0 +1,231 @@
+{template "header.html"}
+<script type="text/javascript">
+function dr_search_kd(id, sn) {
+	dr_dialog_show("快递跟踪", "{dr_url(APP_DIR.'/order/kd')}&id="+id+"&sn="+sn);
+}
+function dr_set_kd(id) {
+	if (id == "null") {
+		$("#dr_kd_name").html("收货说明");
+	} else {
+		$("#dr_kd_name").html("运单编号"); 
+	}
+}
+</script>
+<form action="" method="post" id="myform" name="myform">
+<input name="action" id="action" type="hidden" value="" />
+<div class="subnav">
+	<div class="content-menu ib-a blue line-x">
+		{$menu}
+	</div>
+	<div class="bk10"></div>
+    <fieldset class="table-list">
+        <legend>商品清单</legend>
+        <table width="100%">
+		<thead>
+			<tr>
+				<th width="70"></th>
+				<th style="padding-left:25px;" align="left">商品</th>
+				<th style="width:80px;" >单价</th>
+				<th style="width:80px;" >数量</th>
+				<th style="width:80px;" >运费</th>
+				<th style="width:80px;" >共计</th>
+				{if $review}<th style="width:80px;text-align:left" >评分</th>{/if}
+			</tr>
+		</thead>
+		<tr>
+		<td colspan="7" style="border:none">
+			<table border="0" cellspacing="0" cellpadding="0" class="dr_order_item" width="100%">
+			{loop $data.items $i $item}
+			  <tr>
+				<td width="70"><a href="{$item.url}" target="_blank" class="dr_order_item_thumb"><img src="{dr_thumb($item.thumb, 70, 60)}" width="70" /></a></td>
+				<td style="padding-right:5px;"><a href="{$item.url}" target="_blank">{$item.title}</a><div style="padding-top:3px; color:#999">{$item.format}</div></td>
+				<td style="width:80px;color:red;" align="center">
+				{if $item.discount}
+				<del>￥{number_format($item.price, 2)}元</del><br>￥
+				{number_format($item.discount, 2)}
+				{else}
+				{number_format($item.price, 2)}
+				{/if}元
+				</td>
+				<td style="width:80px;color:blue;" align="center">{$item.num}</td>
+				<td style="width:80px;color:green;" align="center"><span class='price'>
+                {if $item.freight.type==0 && $item.freight.price}
+                ￥<span>{number_format($item.freight.price, 2)}</span>
+                {else if $item.freight.type==1 && $item.freight.price}
+                ￥<span>{number_format($item.freight.price * $item['num'], 2)}</span>
+                {else}
+                无
+                {/if}
+                </span></td>
+				<td style="width:80px;color:red;" align="center">￥{number_format($item.total, 2)}元</td>
+				{if $review}
+				<td style="width:80px;" align="left">
+                <script language="javascript">
+                function dr_order_review_{$i}() {
+                    var rbody = '';
+                    rbody+= '<style>.table-list2 tbody td, .table-list2 .btn { padding-bottom:1px;padding-top:1px; }</style>';
+                    rbody+= '<table border="0" style="min-width:300px;" cellpadding="1" cellspacing="0" class="table-list table-list2">';
+                    rbody+= '<tr><td style="text-align:right">商品总分：</td><td><b style="color:red">{$item.avgsort} 分</b></td></tr><tr>';
+                    {loop $option $ii $name}
+                    rbody+= '<tr><td style="text-align:right">{trim($name)}：</td><td>{$item[value][$ii]} 分</td></tr>';
+                    {/loop}
+                    rbody+= '<tr><td style="border:none;text-align:right">对商品评价内容：</td><td style="border:none">{$item.content}</td></tr>';
+                    rbody+= '</table>&nbsp;';
+                    var throughBox = art.dialog.through;
+                    throughBox({
+                        content: rbody,
+                        title: '商品评分'
+                    });
+                }
+                </script>
+                <a href="javascript:;" onclick="dr_order_review_{$i}();" style="color:blue;">[查看评分]</a></td>
+				{/if}
+			  </tr>
+			{/loop}
+			</table>
+		</td>
+		</tr>
+		</table>
+    </fieldset>
+	<div class="bk10"></div>
+    <fieldset>
+        <legend>订单状态</legend>
+        <table width="100%" class="table_form">
+            <tr>
+                <th width="150">订单编号：</th> 
+                <td width="200">{$data.id}</td>
+                <th width="150">下单时间：</th> 
+                <td>{dr_date($data.inputtime, NULL, 'red')}</td>
+            </tr>
+			<tr>
+                <th>付款方式：</th> 
+                <td><font color="{$paytype[$data.ptid]['color']}"><b>{$paytype[$data.ptid]['name']}</b></font></td>
+                <th>订单价格：</th> 
+                <td><span class="dr_pirce">￥{$data.price}元</span> {if $data.freight >0}（含邮费￥{$data.freight}元）{/if}</td>
+            </tr>
+            <tr>
+                <th>已使用{SITE_SCORE}：</th>
+                <td><span class="dr_pirce">{$data.score}</span></td>
+                <th>{if $data.successtime}成交时间：{/if}</th>
+                <td>{if $data.successtime}{dr_date($data.successtime, NULL, 'red')}{/if}</td>
+            </tr>
+            <tr>
+                <th>买家信息：</th>
+                <td><input name="dr_author_{$data.id}" id="dr_author_{$data.id}" type="hidden" value="{$data.username}" /><a href="javascript:;" onclick="dr_dialog_member('author_{$data.id}')">{dr_strcut($data.username, 10)}</a></td>
+                <th>订单状态：</th>
+                <td><b>{if $data.status==0}<font color="#FF0000">交易关闭</font>
+				{else if $data.status==1}<font color="#FF9933">等待付款</font>
+				{else if $data.status==2}<font color="#FF9933">等待发货</font>
+				{else if $data.status==3}<font color="#FF0000">等待收货</font>
+				{else if $data.status==4}<font color="#009900">交易成功</font>{/if}</b></td>
+            </tr>
+            <tr class="dr_border_none">
+                <th>买家留言：</th>
+                <td colspan="3">{$data.gbook}</td>
+            </tr>
+        </table>
+    </fieldset>
+	<div class="bk10"></div>
+    <fieldset>
+        <legend>收货人信息</legend>
+        <table width="100%" class="table_form">
+            <tr>
+                <th width="150">收货人：</th> 
+                <td width="200">{$data.name}</td>
+                <th width="150">联系电话：</th> 
+                <td>{$data.phone}</td>
+            </tr>
+            <tr>
+                <th>所在城市：</th>
+                <td>{dr_linkagepos('address', $data.city, ' > ', '')}</td>
+                <th>邮政编码：</th>
+                <td>{$data.zipcode}</td>
+            </tr>
+            <tr class="dr_border_none">
+                <th>详细地址：</th>
+                <td colspan="3">{$data.address}</td>
+            </tr>
+        </table>
+    </fieldset>
+	{if $data.status != 4}
+	<div class="bk10"></div>
+    <fieldset>
+        <legend>订单操作</legend>
+		<table width="100%" class="table_form">
+		{if $data.status==2}
+		<tr>
+			<th>运送方式：</th>
+			<td>
+			<select name="data[id]" id="dr_kd" onchange="dr_set_kd(this.value)">
+			<option value="0"> - 选择 - </option>
+			{loop $kdlist $i $t}
+			<option value="{$i}">{$t}</option>
+			{/loop}
+			</select>
+			</td>
+		</tr>
+		<tr>
+			<th><font id="dr_kd_name">运单编号</font>：</th>
+			<td>
+			<input type="text" value="" name="data[text]" class="input-text" style="width:70%" />
+			</td>
+		</tr>
+		{else if $data.status==3 && $data.sendnote}
+		<tr>
+			<th>运送方式：</th>
+			<td>
+			{$data.sendnote.name}
+			</td>
+		</tr>
+		{if $data.sendnote.id != 'null'}
+		<tr>
+			<th><font id="dr_kd_name">运单编号</font>：</th>
+			<td>
+			{$data.sendnote.text}
+			<input value="查询运单" onclick="dr_search_kd('{$data.sendnote.id}', '{$data.sendnote.text}')" type="button" name="submit" class="button" />
+			</td>
+		</tr>
+		{else}
+		<tr>
+			<th><font id="dr_kd_name">收货说明</font>：</th>
+			<td>
+			{$data.sendnote.text}
+			</td>
+		</tr>
+		{/if}
+        {else if $data.status==1}
+        <tr>
+			<th>订单价格：</th>
+			<td>
+			<input type="text" value="{$data.price}" name="price" class="input-text" />
+			</td>
+		</tr>
+		{/if}
+		<tr class="dr_border_none">
+			<th width="150"> </th>
+			<td>
+			{if $data.status==1}
+            <input value="修改价格" onClick="$('#action').val('1');" type="submit" name="submit" class="button" />
+            <input value="设为已付款" onClick="$('#action').val('2');" type="submit" name="submit" class="button" />
+            <input value="关闭订单" onClick="$('#action').val('3');" type="submit" name="submit" class="button" />
+			<input value="删除订单" onClick="$('#action').val('4');" type="submit" name="submit" class="button" />
+            {/if}
+			{if $data.status==2}
+            <input value="发货" onClick="$('#action').val('1');" type="submit" name="submit" class="button" />
+			<input value="{if $data.ptid==3}关闭订单{else}退款{/if}" onClick="$('#action').val('2');" type="submit" name="submit" class="button" />
+            {/if}
+			{if $data.status==3}
+            <input value="确认收货" type="submit" name="submit" class="button" />
+            {/if}
+            
+			{if $data.status==0}
+            <input value="删除订单" type="submit" name="submit" class="button" />
+            {/if}
+			</td>
+		</tr>
+        </table>
+    </fieldset>
+	{/if}
+</div>
+</form>
+{template "footer.html"}

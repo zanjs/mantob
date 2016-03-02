@@ -1,0 +1,100 @@
+{template header.html}
+{php $_pages=$pages;}
+<div class="subnav">
+	<div class="content-menu ib-a blue line-x">
+		{$menu}<span>|</span><a href="http://www.mantob.com/help/list-341.html" target="_blank"><em>{lang('help')}</em></a>
+	</div>
+	<div class="bk10"></div>
+	<div class="explain-col">
+        <form method="post" action="" name="searchform" id="searchform">
+        {lang('html-348')}：
+        <select name="data[groupid]">
+            <option value=""> -- </option>
+            {list action=cache name=MEMBER.group}
+            <option value="{$t.id}" {if $t.id==$param.groupid}selected{/if}> {$t.name} </option>
+            {/list}
+			{php $gcache=$return;}
+        </select>
+        &nbsp;&nbsp;
+        <select name="data[field]">
+            <option value="uid" {if $param.field=='uid'}selected{/if}>Uid</option>
+            {loop $field $t}
+            <option value="{$t.fieldname}" {if $param.field==$t.fieldname}selected{/if}>{$t.name}</option>
+            {/loop}
+        </select> ：
+        <input type="text" class="input-text" value="{$param.keyword}" size="30" placeholder="{lang('html-249')}" name="data[keyword]" />&nbsp;
+        &nbsp;&nbsp;
+        <input type="submit" value="{lang('search')}" class="button" name="search">
+        </form>
+	</div>
+	<div class="bk10"></div>
+	<div class="table-list">
+		<form action="" method="post" name="myform" id="myform">
+        <input name="action" id="action" type="hidden" value="del" />
+		<table width="100%">
+		<thead>
+		<tr>
+			<th width="10" align="right"><input name="dr_select" id="dr_select" type="checkbox" onClick="dr_selected()" />&nbsp;</th>
+			<th width="40" align="center">Uid</th>
+			<th class="{ns_sorting('username')}" name="username" width="150" align="left">{lang('html-347')}</th>
+			<th class="{ns_sorting('groupid')}" name="groupid" width="90" align="left">{lang('html-348')}</th>
+			<th class="{ns_sorting('experience')}" name="experience" width="80" align="left">{SITE_EXPERIENCE}</th>
+			<th class="{ns_sorting('score')}" name="score" width="80" align="left">{SITE_SCORE}</th>
+			<th class="{ns_sorting('money')}" name="money" width="80" align="left">{SITE_MONEY}</th>
+			<th class="{ns_sorting('spend')}" name="spend" width="80" align="left">{lang('html-709')}</th>
+			<th hide="1" class="{ns_sorting('regtime')}" name="regtime" width="120" align="left">{lang('html-351')}</th>
+			<th align="left" class="dr_option">{lang('option')}</th>
+		</tr>
+		</thead>
+		<tbody>
+		{loop $list $t}
+		{if  $t.adminid!=1}
+		<tr id="dr_row_{$t.uid}">
+			<td align="right"><input name="ids[]" type="checkbox" class="dr_select{$t.groupid}" value="{$t.uid}" />&nbsp;</td>
+			<td align="center">{$t.uid}</td>
+			<td align="left">
+            <a onclick="dr_dialog_member('{$t.uid}')" href="javascript:;">
+			{if $t.groupid==2 && !$t.username}
+			{get_member_nickname($t.uid)}&nbsp;{lang('html-586')}
+			{else}
+			{dr_keyword_highlight($t.username, $param.keyword)}
+			{/if}
+            </a>
+			</td>
+			<td align="left"><font {if $t.groupid==1}color="#FF0000"{/if}>{MEMBER.group.$t[groupid].name}</font></td>
+			<td align="left"><a {if $this->ci->is_auth('member/admin/experience/index')}href="{dr_url('member/experience/index',array('uid'=>$t.uid))}" style="color: blue;text-decoration: underline;font-size: 12px;"{/if}>{$t.experience}</a></td>
+			<td align="left"><a {if $this->ci->is_auth('member/admin/score/index')}href="{dr_url('member/score/index',array('uid'=>$t.uid))}" style="color: blue;text-decoration: underline;font-size: 12px;"{/if}>{$t.score}</a></td>
+			<td align="left"><a {if $this->ci->is_auth('member/admin/pay/index')}href="{dr_url('member/pay/index',array('uid'=>$t.uid))}" style="color: blue;text-decoration: underline;font-size: 12px;"{/if}>{$t.money}</a></td>
+			<td hide="1" align="left">{$t.spend}</td>
+			<td align="left">{dr_date($t.regtime, NULL, 'red')}</td>
+			<td align="left" class="dr_option">
+			{if $this->ci->is_auth('member/admin/home/edit')}<a {if $t.id==1}href="javascript:;" style="color:#999"{else}href="{dr_url('member/home/edit',array('uid'=>$t.uid))}"{/if}>{lang('edit')}</a>{/if}
+			{if MEMBER_OPEN_SPACE && $this->ci->is_auth('member/admin/space/edit')}<a href="{dr_url('member/space/edit',array('uid' => $t.uid))}">{lang('html-334')}</a>{/if}
+            {if $member.adminid==1}<a href="{MEMBER_URL}index.php?c=api&m=ologin&uid={$t.uid}" target="_blank">{lang('html-703')}</a>{/if}
+			</td>
+		</tr> 
+		{/if}
+		{/loop}
+		<tr>
+        	<th width="20" align="right"><input name="dr_select" id="dr_select" type="checkbox" onClick="dr_selected()" />&nbsp;</th>
+			<td colspan="10" align="left" style="border:none">
+            {if $this->ci->is_auth('member/admin/home/del')}
+			<input type="button" class="button" value="{lang('del')}" name="option" onClick="$('#action').val('del');dr_confirm_set_all('{lang('015')}', 1)" />
+            {/if}
+            {if $this->ci->is_auth('member/admin/home/edit')}
+			<input type="button" class="button" value="{lang('html-394')}" name="option" onClick="$('#action').val('update');dr_confirm_set_all('{lang('015')}')" />
+            <select name="groupid">
+            {loop $gcache $t}
+            <option value="{$t.id}"> {$t.name} </option>
+            {/loop}
+        	</select>
+            {/if}
+			</td>
+		</tr>
+		</tbody>
+		</table>
+		</form>
+        <div id="pages"><a>{dr_lang('html-346', $param['total'])}</a>{$_pages}</div>
+	</div>
+</div>
+{template footer.html}

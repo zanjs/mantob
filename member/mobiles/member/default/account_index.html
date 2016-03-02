@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+	<head>
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+	    <meta charset="utf-8">
+	    <title>{$meta_name}</title>
+    	<meta name="keywords" content="{$meta_keywords}" />
+    	<meta name="description" content="{$meta_description}" />
+	    <link rel="stylesheet" type="text/css" href="{HOME_MOBILE_PATH}dist/reset.css" />
+	    <link rel="stylesheet" type="text/css" href="{HOME_MOBILE_PATH}dist/style.css" />
+	    <script type="text/javascript">var HOME_MOBILE_PATH = '{HOME_MOBILE_PATH}';</script>
+	</head>
+	<body>
+		<div class="pages bg">
+			<section class="widget_page">
+            	{template "header.html"}
+                
+                <div class="member">
+                	<form action="" method="post">
+                	<ul class="myfield">
+                    {if $result_error}
+                    <li>
+                        <div class="alert alert-danger">
+                            {$result_error.msg}
+                        </div>
+                    </li>
+                    {/if}
+                    {if $member.groupid == 2 && $member.username}
+                    <li>
+                        <span class="l"><font color="red">*</font>&nbsp;邮箱：</span>
+                        <span class="r"><input class="input-text" type="text" name="member[email]" style="width:200px;" required="required" /></span>
+                    </li>
+                    <li>
+                        <span class="l"><font color="red">*</font>&nbsp;密码： </span>
+                        <span class="r"><input class="input-text" type="password" name="member[password]" style="width:200px;" required="required" /></span>
+                    </li>
+                    {else if $member.groupid == 2 && !$member.username}}
+                    <li>
+                        <span class="l"><font color="red">*</font>&nbsp;账号： </span>
+                        <span class="r"><input class="input-text" type="text" name="member[username]" style="width:200px;" required="required" /></span>
+                    </li>
+                    <li>
+                        <span class="l"><font color="red">*</font>&nbsp;邮箱： </span>
+                        <span class="r"><input class="input-text" type="text" name="member[email]" style="width:200px;" required="required" /></span>
+                    </li>
+                    <li>
+                        <span class="l"><font color="red">*</font>&nbsp;密码： </span>
+                        <span class="r"><input class="input-text" type="password" name="member[password]" style="width:200px;" required="required" /></span>
+                    </li>
+                    {else}
+                    <li>
+                        <span class="l">邮箱：</span>
+                        <span class="r">{$member.email}</span>
+                    </li>
+                    {/if}
+                	{$myfield}
+                    <li class="mbutton">
+                    	<span class="l">&nbsp;</span>
+                        <span class="r"><button type="submit" class="button">登录</button></span>
+                    </li>
+                    </ul>
+                    <div class="note note-info">
+                            此模板需要在会员后台设置-字段格式-移动端格式：<br>
+                            <?php echo htmlspecialchars('<li><span class="l">{text}</span><span class="r">{value}</span></li>');?>
+                        </div>
+                    </form>
+                </div>
+                
+                {template "footer.html", "/"}
+			</section>
+		</div>
+	</body>
+</html>

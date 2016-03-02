@@ -1,0 +1,88 @@
+{template "header.html","/"}
+<body>
+{template "top.html"}
+<!-- 面包 -->
+<div class="zzw mauto zMianBao">
+    <h2 class="mianbaoH">
+      <a href="{SITE_URL}">首页</a>&gt;
+      {dr_catpos($catid, ' &gt; ')}&gt;
+      <a href="javascript:;">商品详情</a>
+    </h2>
+</div>
+<!-- 面包 end-->
+<!-- Product show -->
+<div class="zzw mauto zProductShowD">
+  <div class="zProductShowHead">
+    <!-- left -->
+    <div class="fl zProductShowHeadLeft">
+      <!--产品参数开始-->
+  <div>
+    <div id="preview" class="spec-preview"> <span class="jqzoom"><img jqimg="{dr_get_file($images[0]['file'])}" src="{dr_thumb($images[0]['file'], 538, 350)}" /></span> </div>
+    <!--缩图开始-->
+    <div class="spec-scroll"> <a class="prev">&lt;</a> <a class="next">&gt;</a>
+      <div class="items">
+        <ul>
+         {loop $images $i $t}
+          <li><img alt="" bimg="{dr_get_file($t.file)}" src="{dr_get_file($t.file)}" onmousemove="preview(this);"></li>
+         {/loop}
+         
+        </ul>
+      </div>
+    </div>
+    <!--缩图结束-->
+  </div>
+  <!--产品参数结束-->
+    </div>
+    <!-- left end-->
+    <!-- right -->
+    <div class="fr zProductShowHeadRight">
+        <h1 class="zTitle">{$title}</h1>
+        <div class="zShowCankao">
+          <div class="zjiage">
+            <span class="lev">厨房参考价：</span>
+            <span class="zjiage">￥<i>{$price}</i></span>
+          </div>
+          <!-- configure -->
+          <div class="zShowconfig">
+            <span class="fl lev">参考配置：</span>
+            <div class="fl zShowconfigCoun">
+              {$shconfig}
+            </div>
+          </div>
+          <!-- configure end-->
+        </div>
+        <!-- zan -->
+        <div class="zproshozan">
+          <div class="fl zproshozanDd">
+        <a href="javascript:om_dzan({$id});" class="prozan"><span class="zanxing">★</span><span class="zannum" id="pro_zan_{$id}">{$zan}</span></a></div>
+          <div class="bdsharebuttonbox"><a href="{$url}" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="{$url}" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="{$url}" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="{$url}" class="bds_more" data-cmd="more"></a></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+        </div>
+        <!-- zan end-->
+        <div class="clear"></div>
+        <div class="showbtn">
+        <b id="dr_quantity" class="zhiden">{$quantity}</b>
+        <input size="4" type="text" class="zhiden" id="dr_num" value="1" />
+          <button type="button" id="buybtn"class="proshowMark" onclick="dr_buy()">我要预定</button>
+        </div>
+    </div>
+    <!-- right end-->
+  </div>
+  <div class="clear"></div>
+  <div class="zProShowCountBox">
+    <h2 class="showT">商品详情</h2>
+    <div class="zProShowCount">
+      {$content}
+    </div>
+  </div>
+</div>
+
+
+<!-- Product show end-->
+{template "footer.html"}
+
+    <script type="text/javascript" src="{HOME_THEME_PATH}js/jquery.jqzoom.js"></script>
+    <script type="text/javascript" src="{HOME_THEME_PATH}js/base.js"></script>
+
+</body>
+</html>
