@@ -16,7 +16,7 @@
 return array(
 
 	'SITE_NAME'                     => 'mantob', //网站的名称
-	'SITE_DOMAIN'                   => 'wubu.com', //网站的域名
+	'SITE_DOMAIN'                   => 'wubu.app', //网站的域名
 	'SITE_MOBILE'                   => '', //移动端域名
 	'SITE_LANGUAGE'                 => 'zh-cn', //网站的语言
 	'SITE_THEME'                    => 'zan', //网站的主题风格

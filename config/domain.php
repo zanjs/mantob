@@ -15,6 +15,6 @@
 
 return array(
 
-	'wubu.com'                      => 1,
+	'wubu.app'                      => 1,
 
 );

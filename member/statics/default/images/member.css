@@ -185,7 +185,7 @@ body {
     top: -5px;
 }
 .nav_wrapper {
-    background: url(../images/nav_bg.png) repeat-x;
+    background: #219805;
     margin-bottom: 10px;
 }
 .nav {
@@ -195,7 +195,7 @@ body {
 }
 .nav .nav_list li {
     float: left;
-    background: url(../images/nav_li_bg.png) left top no-repeat;
+    
     padding-left: 1px;
     height: 36px;
 }
@@ -211,11 +211,11 @@ body {
     font-weight: bold;
 }
 .nav .nav_list li a:hover {
-    background: url(../images/nav_li_bg_hover.png) no-repeat;
+    background: #078407;
     text-decoration: none;
 }
 .nav .nav_list li a.cur {
-    background: url(../images/nav_li_bg_cur.png) no-repeat;
+    background: #080;
 }
 .page_url {
     background-color: #FFF;
@@ -403,7 +403,7 @@ body {
 .aside .round h4 {
     font-size: 14px;
     font-weight: bold;
-    background: url(../images/h4_bg.png) repeat-x;
+    background: #e5e5e5;
     height: 34px;
     line-height: 34px;
     padding: 0 10px;
@@ -436,7 +436,8 @@ body {
     text-decoration: none;
 }
 .aside .menu li a.cur {
-    background: #F7F8FA url(../images/menu_li_cur.png) repeat-y;
+    background: #F7F8FA;
+    border-left: 3px solid #048504;
 }
 .aside .menu li a:hover {
     background-color: #F7F8FA;
@@ -444,7 +445,8 @@ body {
 .aside .service h5 {
     height: 35px;
     line-height: 35px;
-    background: url(../images/solution_h3_bg.png) left bottom repeat-x;
+    color: #FFF;
+    background: #53CE36;
     overflow: hidden;
     margin-bottom: 8px;
 }
@@ -1692,11 +1694,11 @@ li.check_code a em {
     margin-right: 2em;
 }
 .mbutton .blue_button {
-    background: url(../images/blue_button_bg.png) no-repeat;
+    background: #048504;
     width: 75px;
 }
 .mbutton .blue_button:hover {
-    background-position: left bottom;
+    background: #219805;
 }
 .mbutton .blue_button2 {
     background: url(../images/blue_button_bg2.png) no-repeat;
